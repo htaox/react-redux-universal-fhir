@@ -26,5 +26,9 @@
     "errorhandler": "~1.2.2",
     "morgan": "~1.4.0",
     "underscore": "~1.7.0"
+  },
+  "devDependencies": {
+    "should": "~4.0.4",
+    "mocha": "~1.21.4"
   }
 }
