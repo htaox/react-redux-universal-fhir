@@ -1,0 +1,3676 @@
+{
+  "resourceType": "Conformance",
+  "identifier": "http://fhirplace.org",
+  "version": "todo",
+  "name": "fhirplace",
+  "publisher": "fhirplace",
+  "telecom": [
+    {
+      "system": "url",
+      "value": "http://try-fhirplace.hospital-systems.com/fhirface/index.html#/"
+    }
+  ],
+  "description": "FHIR open source server",
+  "status": "active",
+  "date": "2014-08-30",
+  "software": {
+    "name": "fhirplace",
+    "version": "0.0.1"
+  },
+  "fhirVersion": "integration build",
+  "acceptUnknown": false,
+  "format": [
+    "json",
+    "xml"
+  ],
+  "rest": [
+    {
+      "mode": "server",
+      "resource": [
+        {
+          "type": "ValueSet",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/ValueSet"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "A code defined in the value set"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "The value set publication date"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "documentation": "Text search in the description of the value set"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "The identifier of the value set"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "The name of the value set"
+            },
+            {
+              "name": "publisher",
+              "type": "string",
+              "documentation": "Name of the publisher of the value set"
+            },
+            {
+              "name": "reference",
+              "type": "token",
+              "documentation": "A code system included or excluded in the value set or an imported value set"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "The status of the value set"
+            },
+            {
+              "name": "system",
+              "type": "token",
+              "documentation": "The system for any codes defined by this value set"
+            },
+            {
+              "name": "version",
+              "type": "token",
+              "documentation": "The version identifier of the value set"
+            }
+          ]
+        },
+        {
+          "type": "AdverseReaction",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/AdverseReaction"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "The date of the reaction"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The subject that the sensitivity is about"
+            },
+            {
+              "name": "substance",
+              "type": "reference",
+              "documentation": "The name or code of the substance that produces the sensitivity"
+            },
+            {
+              "name": "symptom",
+              "type": "token",
+              "documentation": "One of the symptoms of the reaction"
+            }
+          ]
+        },
+        {
+          "type": "Alert",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Alert"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The identity of a subject to list alerts for"
+            }
+          ]
+        },
+        {
+          "type": "AllergyIntolerance",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/AllergyIntolerance"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "Recorded date/time."
+            },
+            {
+              "name": "recorder",
+              "type": "reference",
+              "documentation": "Who recorded the sensitivity"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "The status of the sensitivity"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The subject that the sensitivity is about"
+            },
+            {
+              "name": "substance",
+              "type": "reference",
+              "documentation": "The name or code of the substance that produces the sensitivity"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "The type of sensitivity"
+            }
+          ]
+        },
+        {
+          "type": "CarePlan",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/CarePlan"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "activitycode",
+              "type": "token",
+              "documentation": "Detail type of activity"
+            },
+            {
+              "name": "activitydate",
+              "type": "date",
+              "documentation": "Specified date occurs within period specified by CarePlan.activity.timingSchedule"
+            },
+            {
+              "name": "activitydetail",
+              "type": "reference",
+              "documentation": "Activity details defined in specific resource"
+            },
+            {
+              "name": "condition",
+              "type": "reference",
+              "documentation": "Health issues this plan addresses"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "Time period plan covers"
+            },
+            {
+              "name": "participant",
+              "type": "reference",
+              "documentation": "Who is involved"
+            },
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "Who care plan is for"
+            }
+          ]
+        },
+        {
+          "type": "Composition",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Composition"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "attester",
+              "type": "reference",
+              "documentation": "Who attested the composition"
+            },
+            {
+              "name": "author",
+              "type": "reference",
+              "documentation": "Who and/or what authored the composition"
+            },
+            {
+              "name": "class",
+              "type": "token",
+              "documentation": "Categorization of Composition"
+            },
+            {
+              "name": "context",
+              "type": "token",
+              "documentation": "Code(s) that apply to the event being documented"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "Composition editing time"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Logical identifier of composition (version-independent)"
+            },
+            {
+              "name": "section-content",
+              "type": "reference",
+              "documentation": "The actual data for the section"
+            },
+            {
+              "name": "section-type",
+              "type": "token",
+              "documentation": "Classification of section (recommended)"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Who and/or what the composition is about"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "Kind of composition (LOINC if possible)"
+            }
+          ]
+        },
+        {
+          "type": "ConceptMap",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/ConceptMap"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "The concept map publication date"
+            },
+            {
+              "name": "dependson",
+              "type": "token",
+              "documentation": "Reference to element/field/valueset provides the context"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "documentation": "Text search in the description of the concept map"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "The identifier of the concept map"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "Name of the concept map"
+            },
+            {
+              "name": "product",
+              "type": "token",
+              "documentation": "Reference to element/field/valueset provides the context"
+            },
+            {
+              "name": "publisher",
+              "type": "string",
+              "documentation": "Name of the publisher of the concept map"
+            },
+            {
+              "name": "source",
+              "type": "reference",
+              "documentation": "The system for any concepts mapped by this concept map"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "Status of the concept map"
+            },
+            {
+              "name": "system",
+              "type": "token",
+              "documentation": "The system for any destination concepts mapped by this map"
+            },
+            {
+              "name": "target",
+              "type": "reference",
+              "documentation": "Provides context to the mappings"
+            },
+            {
+              "name": "version",
+              "type": "token",
+              "documentation": "The version identifier of the concept map"
+            }
+          ]
+        },
+        {
+          "type": "Condition",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Condition"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "asserter",
+              "type": "reference",
+              "documentation": "Person who asserts this condition"
+            },
+            {
+              "name": "category",
+              "type": "token",
+              "documentation": "The category of the condition"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "Code for the condition"
+            },
+            {
+              "name": "date-asserted",
+              "type": "date",
+              "documentation": "When first detected/suspected/entered"
+            },
+            {
+              "name": "encounter",
+              "type": "reference",
+              "documentation": "Encounter when condition first asserted"
+            },
+            {
+              "name": "evidence",
+              "type": "token",
+              "documentation": "Manifestation/symptom"
+            },
+            {
+              "name": "location",
+              "type": "token",
+              "documentation": "Location - may include laterality"
+            },
+            {
+              "name": "onset",
+              "type": "date",
+              "documentation": "When the Condition started (if started on a date)"
+            },
+            {
+              "name": "related-code",
+              "type": "token",
+              "documentation": "Relationship target by means of a predefined code"
+            },
+            {
+              "name": "related-item",
+              "type": "reference",
+              "documentation": "Relationship target resource"
+            },
+            {
+              "name": "severity",
+              "type": "token",
+              "documentation": "The severity of the condition"
+            },
+            {
+              "name": "stage",
+              "type": "token",
+              "documentation": "Simple summary (disease specific)"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "The status of the condition"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Who has the condition?"
+            }
+          ]
+        },
+        {
+          "type": "Conformance",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Conformance"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "The conformance statement publication date"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "documentation": "Text search in the description of the conformance statement"
+            },
+            {
+              "name": "event",
+              "type": "token",
+              "documentation": "Event code in a conformance statement"
+            },
+            {
+              "name": "fhirversion",
+              "type": "token",
+              "documentation": "The version of FHIR"
+            },
+            {
+              "name": "format",
+              "type": "token",
+              "documentation": "formats supported (xml | json | mime type)"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "The identifier of the conformance statement"
+            },
+            {
+              "name": "mode",
+              "type": "token",
+              "documentation": "Mode - restful (server/client) or messaging (sender/receiver)"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "Name of the conformance statement"
+            },
+            {
+              "name": "profile",
+              "type": "reference",
+              "documentation": "A profile id invoked in a conformance statement"
+            },
+            {
+              "name": "publisher",
+              "type": "string",
+              "documentation": "Name of the publisher of the conformance statement"
+            },
+            {
+              "name": "resource",
+              "type": "token",
+              "documentation": "Name of a resource mentioned in a conformance statement"
+            },
+            {
+              "name": "security",
+              "type": "token",
+              "documentation": "Information about security of implementation"
+            },
+            {
+              "name": "software",
+              "type": "string",
+              "documentation": "Part of a the name of a software application"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "The current status of the conformance statement"
+            },
+            {
+              "name": "supported-profile",
+              "type": "reference",
+              "documentation": "Profiles supported by the system"
+            },
+            {
+              "name": "version",
+              "type": "token",
+              "documentation": "The version identifier of the conformance statement"
+            }
+          ]
+        },
+        {
+          "type": "Device",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Device"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Instance id from manufacturer, owner and others"
+            },
+            {
+              "name": "location",
+              "type": "reference",
+              "documentation": "A location, where the resource is found"
+            },
+            {
+              "name": "manufacturer",
+              "type": "string",
+              "documentation": "The manufacturer of the device"
+            },
+            {
+              "name": "model",
+              "type": "string",
+              "documentation": "The model of the device"
+            },
+            {
+              "name": "organization",
+              "type": "reference",
+              "documentation": "The organization responsible for the device"
+            },
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "Patient information, if the resource is affixed to a person"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "The type of the device"
+            },
+            {
+              "name": "udi",
+              "type": "string",
+              "documentation": "FDA Mandated Unique Device Identifier"
+            }
+          ]
+        },
+        {
+          "type": "DeviceObservationReport",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/DeviceObservationReport"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "channel",
+              "type": "token",
+              "documentation": "The channel code"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "The compatment code"
+            },
+            {
+              "name": "observation",
+              "type": "reference",
+              "documentation": "The data for the metric"
+            },
+            {
+              "name": "source",
+              "type": "reference",
+              "documentation": "Identifies/describes where the data came from"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Subject of the measurement"
+            }
+          ]
+        },
+        {
+          "type": "DiagnosticOrder",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/DiagnosticOrder"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "actor",
+              "type": "reference",
+              "documentation": "Who recorded or did this"
+            },
+            {
+              "name": "bodysite",
+              "type": "token",
+              "documentation": "Location of requested test (if applicable)"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "Code to indicate the item (test or panel) being ordered"
+            },
+            {
+              "name": "encounter",
+              "type": "reference",
+              "documentation": "The encounter that this diagnostic order is associated with"
+            },
+            {
+              "name": "event-date",
+              "type": "date",
+              "documentation": "The date at which the event happened"
+            },
+            {
+              "name": "event-status",
+              "type": "token",
+              "documentation": "requested | received | accepted | in progress | review | completed | suspended | rejected | failed"
+            },
+            {
+              "name": "event-status-date",
+              "type": "composite",
+              "documentation": "A combination of past-status and date"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Identifiers assigned to this order"
+            },
+            {
+              "name": "item-date",
+              "type": "date",
+              "documentation": "The date at which the event happened"
+            },
+            {
+              "name": "item-past-status",
+              "type": "token",
+              "documentation": "requested | received | accepted | in progress | review | completed | suspended | rejected | failed"
+            },
+            {
+              "name": "item-status",
+              "type": "token",
+              "documentation": "requested | received | accepted | in progress | review | completed | suspended | rejected | failed"
+            },
+            {
+              "name": "item-status-date",
+              "type": "composite",
+              "documentation": "A combination of item-past-status and item-date"
+            },
+            {
+              "name": "orderer",
+              "type": "reference",
+              "documentation": "Who ordered the test"
+            },
+            {
+              "name": "specimen",
+              "type": "reference",
+              "documentation": "If the whole order relates to specific specimens"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "requested | received | accepted | in progress | review | completed | suspended | rejected | failed"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Who and/or what test is about"
+            }
+          ]
+        },
+        {
+          "type": "DiagnosticReport",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/DiagnosticReport"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "The clinically relevant time of the report"
+            },
+            {
+              "name": "diagnosis",
+              "type": "token",
+              "documentation": "A coded diagnosis on the report"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "An identifier for the report"
+            },
+            {
+              "name": "image",
+              "type": "reference",
+              "documentation": "Reference to the image source"
+            },
+            {
+              "name": "issued",
+              "type": "date",
+              "documentation": "When the report was issued"
+            },
+            {
+              "name": "name",
+              "type": "token",
+              "documentation": "The name of the report (e.g. the code for the report as a whole, as opposed to codes for the atomic results, which are the names on the observation resource referred to from the result)"
+            },
+            {
+              "name": "performer",
+              "type": "reference",
+              "documentation": "Who was the source of the report (organization)"
+            },
+            {
+              "name": "request",
+              "type": "reference",
+              "documentation": "What was requested"
+            },
+            {
+              "name": "result",
+              "type": "reference",
+              "documentation": "Link to an atomic result (observation resource)"
+            },
+            {
+              "name": "service",
+              "type": "token",
+              "documentation": "Which diagnostic discipline/department created the report"
+            },
+            {
+              "name": "specimen",
+              "type": "reference",
+              "documentation": "The specimen details"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "The status of the report"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The subject of the report"
+            }
+          ]
+        },
+        {
+          "type": "DocumentManifest",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/DocumentManifest"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "author",
+              "type": "reference",
+              "documentation": "Who and/or what authored the document"
+            },
+            {
+              "name": "confidentiality",
+              "type": "token",
+              "documentation": "Sensitivity of set of documents"
+            },
+            {
+              "name": "content",
+              "type": "reference",
+              "documentation": "Contents of this set of documents"
+            },
+            {
+              "name": "created",
+              "type": "date",
+              "documentation": "When this document manifest created"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "documentation": "Human-readable description (title)"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Unique Identifier for the set of documents"
+            },
+            {
+              "name": "recipient",
+              "type": "reference",
+              "documentation": "Intended to get notified about this set of documents"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "current | superceded | entered in error"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The subject of the set of documents"
+            },
+            {
+              "name": "supersedes",
+              "type": "reference",
+              "documentation": "If this document manifest replaces another"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "What kind of document set this is"
+            }
+          ]
+        },
+        {
+          "type": "DocumentReference",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/DocumentReference"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "authenticator",
+              "type": "reference",
+              "documentation": "Who/What authenticated the document"
+            },
+            {
+              "name": "author",
+              "type": "reference",
+              "documentation": "Who and/or what authored the document"
+            },
+            {
+              "name": "class",
+              "type": "token",
+              "documentation": "Categorization of Document"
+            },
+            {
+              "name": "confidentiality",
+              "type": "token",
+              "documentation": "Sensitivity of source document"
+            },
+            {
+              "name": "created",
+              "type": "date",
+              "documentation": "Document creation time"
+            },
+            {
+              "name": "custodian",
+              "type": "reference",
+              "documentation": "Org which maintains the document"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "documentation": "Human-readable description (title)"
+            },
+            {
+              "name": "event",
+              "type": "token",
+              "documentation": "Main Clinical Acts Documented"
+            },
+            {
+              "name": "facility",
+              "type": "token",
+              "documentation": "Kind of facility where patient was seen"
+            },
+            {
+              "name": "format",
+              "type": "token",
+              "documentation": "Format/content rules for the document"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Master Version Specific Identifier"
+            },
+            {
+              "name": "indexed",
+              "type": "date",
+              "documentation": "When this document reference created"
+            },
+            {
+              "name": "language",
+              "type": "token",
+              "documentation": "The marked primary language for the document"
+            },
+            {
+              "name": "location",
+              "type": "string",
+              "documentation": "Where to access the document"
+            },
+            {
+              "name": "period",
+              "type": "date",
+              "documentation": "Time of service that is being documented"
+            },
+            {
+              "name": "relatesto",
+              "type": "reference",
+              "documentation": "Target of the relationship"
+            },
+            {
+              "name": "relation",
+              "type": "token",
+              "documentation": "replaces | transforms | signs | appends"
+            },
+            {
+              "name": "relationship",
+              "type": "composite",
+              "documentation": "Combination of relation and relatesTo"
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "documentation": "Size of the document in bytes"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "current | superceded | entered in error"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Who|what is the subject of the document"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "What kind of document this is (LOINC if possible)"
+            }
+          ]
+        },
+        {
+          "type": "Encounter",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Encounter"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "A date within the period the Encounter lasted"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Identifier(s) by which this encounter is known"
+            },
+            {
+              "name": "indication",
+              "type": "reference",
+              "documentation": "Reason the encounter takes place (resource)"
+            },
+            {
+              "name": "length",
+              "type": "number",
+              "documentation": "Length of encounter in days"
+            },
+            {
+              "name": "location",
+              "type": "reference",
+              "documentation": "Location the encounter takes place"
+            },
+            {
+              "name": "location-period",
+              "type": "date",
+              "documentation": "Time period during which the patient was present at the location"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "planned | in progress | onleave | finished | cancelled"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The patient present at the encounter"
+            }
+          ]
+        },
+        {
+          "type": "FamilyHistory",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/FamilyHistory"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The identity of a subject to list family history items for"
+            }
+          ]
+        },
+        {
+          "type": "Group",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Group"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "actual",
+              "type": "token",
+              "documentation": "Descriptive or actual"
+            },
+            {
+              "name": "characteristic",
+              "type": "token",
+              "documentation": "Kind of characteristic"
+            },
+            {
+              "name": "characteristic-value",
+              "type": "composite",
+              "documentation": "A composite of both characteristic and value"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "The kind of resources contained"
+            },
+            {
+              "name": "exclude",
+              "type": "token",
+              "documentation": "Group includes or excludes"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Unique id"
+            },
+            {
+              "name": "member",
+              "type": "reference",
+              "documentation": "Who is in group"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "The type of resources the group contains"
+            },
+            {
+              "name": "value",
+              "type": "token",
+              "documentation": "Value held by characteristic"
+            }
+          ]
+        },
+        {
+          "type": "ImagingStudy",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/ImagingStudy"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "accession",
+              "type": "token",
+              "documentation": "The accession id for the image"
+            },
+            {
+              "name": "bodysite",
+              "type": "token",
+              "documentation": "Body part examined (Map from 0018,0015)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "The date the study was done was taken"
+            },
+            {
+              "name": "dicom-class",
+              "type": "token",
+              "documentation": "DICOM class type (0008,0016)"
+            },
+            {
+              "name": "modality",
+              "type": "token",
+              "documentation": "The modality of the image"
+            },
+            {
+              "name": "series",
+              "type": "token",
+              "documentation": "The series id for the image"
+            },
+            {
+              "name": "size",
+              "type": "number",
+              "documentation": "The size of the image in MB - may include &gt; or &lt; in the value"
+            },
+            {
+              "name": "study",
+              "type": "token",
+              "documentation": "The study id for the image"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Who the study is about"
+            },
+            {
+              "name": "uid",
+              "type": "token",
+              "documentation": "Formal identifier for this instance (0008,0018)"
+            }
+          ]
+        },
+        {
+          "type": "Immunization",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Immunization"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "Vaccination  Administration / Refusal Date"
+            },
+            {
+              "name": "dose-sequence",
+              "type": "number",
+              "documentation": "What dose number within series?"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Business identifier"
+            },
+            {
+              "name": "location",
+              "type": "reference",
+              "documentation": "The service delivery location or facility in which the vaccine was / was to be administered"
+            },
+            {
+              "name": "lot-number",
+              "type": "string",
+              "documentation": "Vaccine Lot Number"
+            },
+            {
+              "name": "manufacturer",
+              "type": "reference",
+              "documentation": "Vaccine Manufacturer"
+            },
+            {
+              "name": "performer",
+              "type": "reference",
+              "documentation": "The practitioner who administered the vaccination"
+            },
+            {
+              "name": "reaction",
+              "type": "reference",
+              "documentation": "Additional information on reaction"
+            },
+            {
+              "name": "reaction-date",
+              "type": "date",
+              "documentation": "When did reaction start?"
+            },
+            {
+              "name": "reason",
+              "type": "token",
+              "documentation": "Why immunization occurred"
+            },
+            {
+              "name": "refusal-reason",
+              "type": "token",
+              "documentation": "Explanation of refusal / exemption"
+            },
+            {
+              "name": "refused",
+              "type": "token",
+              "documentation": "Was immunization refused?"
+            },
+            {
+              "name": "requester",
+              "type": "reference",
+              "documentation": "The practitioner who ordered the vaccination"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The subject of the vaccination event / refusal"
+            },
+            {
+              "name": "vaccine-type",
+              "type": "token",
+              "documentation": "Vaccine Product Type Administered"
+            }
+          ]
+        },
+        {
+          "type": "ImmunizationRecommendation",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/ImmunizationRecommendation"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "Date recommendation created"
+            },
+            {
+              "name": "dose-number",
+              "type": "number",
+              "documentation": "Recommended dose number"
+            },
+            {
+              "name": "dose-sequence",
+              "type": "token",
+              "documentation": "Number of dose within sequence"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Business identifier"
+            },
+            {
+              "name": "information",
+              "type": "reference",
+              "documentation": "Patient observations supporting recommendation"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "Vaccine administration status"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Who this profile is for"
+            },
+            {
+              "name": "support",
+              "type": "reference",
+              "documentation": "Past immunizations supporting recommendation"
+            },
+            {
+              "name": "vaccine-type",
+              "type": "token",
+              "documentation": "Vaccine recommendation applies to"
+            }
+          ]
+        },
+        {
+          "type": "List",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/List"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "What the purpose of this list is"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "When the list was prepared"
+            },
+            {
+              "name": "empty-reason",
+              "type": "token",
+              "documentation": "Why list is empty"
+            },
+            {
+              "name": "item",
+              "type": "reference",
+              "documentation": "Actual entry"
+            },
+            {
+              "name": "source",
+              "type": "reference",
+              "documentation": "Who and/or what defined the list contents"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "If all resources have the same subject"
+            }
+          ]
+        },
+        {
+          "type": "Location",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Location"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "address",
+              "type": "string",
+              "documentation": "A (part of the) address of the location"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Unique code or number identifying the location to its users"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "A (portion of the) name of the location"
+            },
+            {
+              "name": "near",
+              "type": "token",
+              "documentation": "The coordinates expressed as [lat],[long] (using KML, see notes) to find locations near to (servers may search using a square rather than a circle for efficiency)"
+            },
+            {
+              "name": "near-distance",
+              "type": "token",
+              "documentation": "A distance quantity to limit the near search to locations within a specific distance"
+            },
+            {
+              "name": "partof",
+              "type": "reference",
+              "documentation": "The location of which this location is a part"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "Searches for locations with a specific kind of status"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "A code for the type of location"
+            }
+          ]
+        },
+        {
+          "type": "Media",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Media"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "When the media was taken/recorded (end)"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Identifier(s) for the image"
+            },
+            {
+              "name": "operator",
+              "type": "reference",
+              "documentation": "The person who generated the image"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Who/What this Media is a record of"
+            },
+            {
+              "name": "subtype",
+              "type": "token",
+              "documentation": "The type of acquisition equipment/process"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "photo | video | audio"
+            },
+            {
+              "name": "view",
+              "type": "token",
+              "documentation": "Imaging view e.g Lateral or Antero-posterior"
+            }
+          ]
+        },
+        {
+          "type": "Medication",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Medication"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "Codes that identify this medication"
+            },
+            {
+              "name": "container",
+              "type": "token",
+              "documentation": "E.g. box, vial, blister-pack"
+            },
+            {
+              "name": "content",
+              "type": "reference",
+              "documentation": "A product in the package"
+            },
+            {
+              "name": "form",
+              "type": "token",
+              "documentation": "powder | tablets | carton +"
+            },
+            {
+              "name": "ingredient",
+              "type": "reference",
+              "documentation": "The product contained"
+            },
+            {
+              "name": "manufacturer",
+              "type": "reference",
+              "documentation": "Manufacturer of the item"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "Common / Commercial name"
+            }
+          ]
+        },
+        {
+          "type": "MedicationAdministration",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/MedicationAdministration"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "device",
+              "type": "reference",
+              "documentation": "Return administrations with this administration device identity"
+            },
+            {
+              "name": "encounter",
+              "type": "reference",
+              "documentation": "Return administrations that share this encounter"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Return administrations with this external identity"
+            },
+            {
+              "name": "medication",
+              "type": "reference",
+              "documentation": "Return administrations of this medication"
+            },
+            {
+              "name": "notgiven",
+              "type": "token",
+              "documentation": "Administrations that were not made"
+            },
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "The identity of a patient to list administrations  for"
+            },
+            {
+              "name": "prescription",
+              "type": "reference",
+              "documentation": "The identity of a prescription to list administrations from"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "MedicationAdministration event status (for example one of active/paused/completed/nullified)"
+            },
+            {
+              "name": "whengiven",
+              "type": "date",
+              "documentation": "Date of administration"
+            }
+          ]
+        },
+        {
+          "type": "MedicationDispense",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/MedicationDispense"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "destination",
+              "type": "reference",
+              "documentation": "Return dispenses that should be sent to a secific destination"
+            },
+            {
+              "name": "dispenser",
+              "type": "reference",
+              "documentation": "Return all dispenses performed by a specific indiividual"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Return dispenses with this external identity"
+            },
+            {
+              "name": "medication",
+              "type": "reference",
+              "documentation": "Returns dispenses of this medicine"
+            },
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "The identity of a patient to list dispenses  for"
+            },
+            {
+              "name": "prescription",
+              "type": "reference",
+              "documentation": "The identity of a prescription to list dispenses from"
+            },
+            {
+              "name": "responsibleparty",
+              "type": "reference",
+              "documentation": "Return all dispenses with the specified responsible party"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "Status of the dispense"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "Return all dispenses of a specific type"
+            },
+            {
+              "name": "whenhandedover",
+              "type": "date",
+              "documentation": "Date when medication handed over to patient (outpatient setting), or supplied to ward or clinic (inpatient setting)"
+            },
+            {
+              "name": "whenprepared",
+              "type": "date",
+              "documentation": "Date when medication prepared"
+            }
+          ]
+        },
+        {
+          "type": "MedicationPrescription",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/MedicationPrescription"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "datewritten",
+              "type": "date",
+              "documentation": "Return prescriptions written on this date"
+            },
+            {
+              "name": "encounter",
+              "type": "reference",
+              "documentation": "Return prescriptions with this encounter identity"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Return prescriptions with this external identity"
+            },
+            {
+              "name": "medication",
+              "type": "reference",
+              "documentation": "Code for medicine or text in medicine name"
+            },
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "The identity of a patient to list dispenses  for"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "Status of the prescription"
+            }
+          ]
+        },
+        {
+          "type": "MedicationStatement",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/MedicationStatement"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "device",
+              "type": "reference",
+              "documentation": "Return administrations with this administration device identity"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Return administrations with this external identity"
+            },
+            {
+              "name": "medication",
+              "type": "reference",
+              "documentation": "Code for medicine or text in medicine name"
+            },
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "The identity of a patient to list administrations  for"
+            },
+            {
+              "name": "when-given",
+              "type": "date",
+              "documentation": "Date of administration"
+            }
+          ]
+        },
+        {
+          "type": "MessageHeader",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/MessageHeader"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            }
+          ]
+        },
+        {
+          "type": "Observation",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Observation"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "Obtained date/time. If the obtained element is a period, a date that falls in the period"
+            },
+            {
+              "name": "name",
+              "type": "token",
+              "documentation": "The name of the observation type"
+            },
+            {
+              "name": "name-value-[x]",
+              "type": "composite",
+              "documentation": "Both name and one of the value parameters"
+            },
+            {
+              "name": "performer",
+              "type": "reference",
+              "documentation": "Who and/or what performed the observation"
+            },
+            {
+              "name": "related",
+              "type": "composite",
+              "documentation": "Related Observations - search on related-type and related-target together"
+            },
+            {
+              "name": "related-target",
+              "type": "reference",
+              "documentation": "Observation that is related to this one"
+            },
+            {
+              "name": "related-type",
+              "type": "token",
+              "documentation": "has-component | has-member | derived-from | sequel-to | replaces | qualified-by | interfered-by"
+            },
+            {
+              "name": "reliability",
+              "type": "token",
+              "documentation": "The reliability of the observation"
+            },
+            {
+              "name": "specimen",
+              "type": "reference",
+              "documentation": "Specimen used for this observation"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "The status of the observation"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The subject that the observation is about"
+            },
+            {
+              "name": "value-concept",
+              "type": "token",
+              "documentation": "The value of the observation, if the value is a CodeableConcept"
+            },
+            {
+              "name": "value-date",
+              "type": "date",
+              "documentation": "The value of the observation, if the value is a Period"
+            },
+            {
+              "name": "value-quantity",
+              "type": "quantity",
+              "documentation": "The value of the observation, if the value is a Quantity, or a SampledData (just search on the bounds of the values in sampled data)"
+            },
+            {
+              "name": "value-string",
+              "type": "string",
+              "documentation": "The value of the observation, if the value is a string, and also searches in CodeableConcept.text"
+            }
+          ]
+        },
+        {
+          "type": "OperationOutcome",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/OperationOutcome"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            }
+          ]
+        },
+        {
+          "type": "Order",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Order"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "authority",
+              "type": "reference",
+              "documentation": "If required by policy"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "When the order was made"
+            },
+            {
+              "name": "detail",
+              "type": "reference",
+              "documentation": "What action is being ordered"
+            },
+            {
+              "name": "source",
+              "type": "reference",
+              "documentation": "Who initiated the order"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Patient this order is about"
+            },
+            {
+              "name": "target",
+              "type": "reference",
+              "documentation": "Who is intended to fulfill the order"
+            },
+            {
+              "name": "when",
+              "type": "date",
+              "documentation": "A formal schedule"
+            },
+            {
+              "name": "when_code",
+              "type": "token",
+              "documentation": "Code specifies when request should be done. The code may simply be a priority code"
+            }
+          ]
+        },
+        {
+          "type": "OrderResponse",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/OrderResponse"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "pending | review | rejected | error | accepted | cancelled | replaced | aborted | complete"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "When the response was made"
+            },
+            {
+              "name": "fulfillment",
+              "type": "reference",
+              "documentation": "Details of the outcome of performing the order"
+            },
+            {
+              "name": "request",
+              "type": "reference",
+              "documentation": "The order that this is a response to"
+            },
+            {
+              "name": "who",
+              "type": "reference",
+              "documentation": "Who made the response"
+            }
+          ]
+        },
+        {
+          "type": "Organization",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Organization"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "active",
+              "type": "token",
+              "documentation": "Whether the organization's record is active"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Any identifier for the organization (not the accreditation issuer's identifier)"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "A portion of the organization's name"
+            },
+            {
+              "name": "partof",
+              "type": "reference",
+              "documentation": "Search all organizations that are part of the given organization"
+            },
+            {
+              "name": "phonetic",
+              "type": "string",
+              "documentation": "A portion of the organization's name using some kind of phonetic matching algorithm"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "A code for the type of organization"
+            }
+          ]
+        },
+        {
+          "type": "Other",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Other"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "Kind of Resource"
+            },
+            {
+              "name": "created",
+              "type": "date",
+              "documentation": "When created"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "Identifies the"
+            }
+          ]
+        },
+        {
+          "type": "Patient",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Patient"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "active",
+              "type": "token",
+              "documentation": "Whether the patient record is active"
+            },
+            {
+              "name": "address",
+              "type": "string",
+              "documentation": "An address in any kind of address/part of the patient"
+            },
+            {
+              "name": "animal-breed",
+              "type": "token",
+              "documentation": "The breed for animal patients"
+            },
+            {
+              "name": "animal-species",
+              "type": "token",
+              "documentation": "The species for animal patients"
+            },
+            {
+              "name": "birthdate",
+              "type": "date",
+              "documentation": "The patient's date of birth"
+            },
+            {
+              "name": "family",
+              "type": "string",
+              "documentation": "A portion of the family name of the patient"
+            },
+            {
+              "name": "gender",
+              "type": "token",
+              "documentation": "Gender of the patient"
+            },
+            {
+              "name": "given",
+              "type": "string",
+              "documentation": "A portion of the given name of the patient"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "A patient identifier"
+            },
+            {
+              "name": "language",
+              "type": "token",
+              "documentation": "Language code (irrespective of use value)"
+            },
+            {
+              "name": "link",
+              "type": "reference",
+              "documentation": "All patients linked to the given patient"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "A portion of either family or given name of the patient"
+            },
+            {
+              "name": "phonetic",
+              "type": "string",
+              "documentation": "A portion of either family or given name using some kind of phonetic matching algorithm"
+            },
+            {
+              "name": "provider",
+              "type": "reference",
+              "documentation": "The organization at which this person is a patient"
+            },
+            {
+              "name": "telecom",
+              "type": "string",
+              "documentation": "The value in any kind of telecom details of the patient"
+            }
+          ]
+        },
+        {
+          "type": "Practitioner",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Practitioner"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "address",
+              "type": "string",
+              "documentation": "An address in any kind of address/part"
+            },
+            {
+              "name": "family",
+              "type": "string",
+              "documentation": "A portion of the family name"
+            },
+            {
+              "name": "gender",
+              "type": "token",
+              "documentation": "Gender of the practitioner"
+            },
+            {
+              "name": "given",
+              "type": "string",
+              "documentation": "A portion of the given name"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "A practitioner's Identifier"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "A portion of either family or given name"
+            },
+            {
+              "name": "organization",
+              "type": "reference",
+              "documentation": "The identity of the organization the practitioner represents / acts on behalf of"
+            },
+            {
+              "name": "phonetic",
+              "type": "string",
+              "documentation": "A portion of either family or given name using some kind of phonetic matching algorithm"
+            },
+            {
+              "name": "telecom",
+              "type": "string",
+              "documentation": "The value in any kind of contact"
+            }
+          ]
+        },
+        {
+          "type": "Procedure",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Procedure"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "The date the procedure was performed on"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The identity of a patient to list procedures  for"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "Type of procedure"
+            }
+          ]
+        },
+        {
+          "type": "Profile",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Profile"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "code",
+              "type": "token",
+              "documentation": "A code for the profile in the format uri::code (server may choose to do subsumption)"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "The profile publication date"
+            },
+            {
+              "name": "description",
+              "type": "string",
+              "documentation": "Text search in the description of the profile"
+            },
+            {
+              "name": "extension",
+              "type": "token",
+              "documentation": "An extension code (use or definition)"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "The identifier of the profile"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "Name of the profile"
+            },
+            {
+              "name": "publisher",
+              "type": "string",
+              "documentation": "Name of the publisher of the profile"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "The current status of the profile"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "Type of resource that is constrained in the profile"
+            },
+            {
+              "name": "valueset",
+              "type": "reference",
+              "documentation": "A vocabulary binding code"
+            },
+            {
+              "name": "version",
+              "type": "token",
+              "documentation": "The version identifier of the profile"
+            }
+          ]
+        },
+        {
+          "type": "Provenance",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Provenance"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "end",
+              "type": "date",
+              "documentation": "End time with inclusive boundary, if not ongoing"
+            },
+            {
+              "name": "location",
+              "type": "reference",
+              "documentation": "Where the activity occurred, if relevant"
+            },
+            {
+              "name": "party",
+              "type": "token",
+              "documentation": "Identity of agent (urn or url)"
+            },
+            {
+              "name": "partytype",
+              "type": "token",
+              "documentation": "e.g. Resource | Person | Application | Record | Document +"
+            },
+            {
+              "name": "start",
+              "type": "date",
+              "documentation": "Starting time with inclusive boundary"
+            },
+            {
+              "name": "target",
+              "type": "reference",
+              "documentation": "Target resource(s) (usually version specific)"
+            }
+          ]
+        },
+        {
+          "type": "Query",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Query"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Links query and its response(s)"
+            },
+            {
+              "name": "response",
+              "type": "token",
+              "documentation": "Links response to source query"
+            }
+          ]
+        },
+        {
+          "type": "Questionnaire",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Questionnaire"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "author",
+              "type": "reference",
+              "documentation": "The author of the questionnaire"
+            },
+            {
+              "name": "authored",
+              "type": "date",
+              "documentation": "When the questionnaire was authored"
+            },
+            {
+              "name": "encounter",
+              "type": "reference",
+              "documentation": "Encounter during which questionnaire was authored"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "An identifier for the questionnaire"
+            },
+            {
+              "name": "name",
+              "type": "token",
+              "documentation": "Name of the questionnaire"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "The status of the questionnaire"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The subject of the questionnaire"
+            }
+          ]
+        },
+        {
+          "type": "RelatedPerson",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/RelatedPerson"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "address",
+              "type": "string",
+              "documentation": "An address in any kind of address/part"
+            },
+            {
+              "name": "gender",
+              "type": "token",
+              "documentation": "Gender of the person"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "A patient Identifier"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "A portion of name in any name part"
+            },
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "The patient this person is related to"
+            },
+            {
+              "name": "phonetic",
+              "type": "string",
+              "documentation": "A portion of name using some kind of phonetic matching algorithm"
+            },
+            {
+              "name": "telecom",
+              "type": "string",
+              "documentation": "The value in any kind of contact"
+            }
+          ]
+        },
+        {
+          "type": "SecurityEvent",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/SecurityEvent"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "patientid",
+              "type": "token",
+              "documentation": "The id of the patient (one of multiple kinds of participations)"
+            },
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "action",
+              "type": "token",
+              "documentation": "Type of action performed during the event"
+            },
+            {
+              "name": "address",
+              "type": "token",
+              "documentation": "Identifier for the network access point of the user device"
+            },
+            {
+              "name": "altid",
+              "type": "token",
+              "documentation": "Alternative User id e.g. authentication"
+            },
+            {
+              "name": "date",
+              "type": "date",
+              "documentation": "Time when the event occurred on source"
+            },
+            {
+              "name": "desc",
+              "type": "string",
+              "documentation": "Instance-specific descriptor for Object"
+            },
+            {
+              "name": "identity",
+              "type": "token",
+              "documentation": "Specific instance of object (e.g. versioned)"
+            },
+            {
+              "name": "name",
+              "type": "string",
+              "documentation": "Human-meaningful name for the user"
+            },
+            {
+              "name": "object-type",
+              "type": "token",
+              "documentation": "Object type being audited"
+            },
+            {
+              "name": "reference",
+              "type": "reference",
+              "documentation": "Specific instance of resource (e.g. versioned)"
+            },
+            {
+              "name": "site",
+              "type": "token",
+              "documentation": "Logical source location within the enterprise"
+            },
+            {
+              "name": "source",
+              "type": "token",
+              "documentation": "The id of source where event originated"
+            },
+            {
+              "name": "subtype",
+              "type": "token",
+              "documentation": "More specific type/id for the event"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "Type/identifier of event"
+            },
+            {
+              "name": "user",
+              "type": "token",
+              "documentation": "Unique identifier for the user"
+            }
+          ]
+        },
+        {
+          "type": "Specimen",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Specimen"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "subject",
+              "type": "reference",
+              "documentation": "The subject of the specimen"
+            }
+          ]
+        },
+        {
+          "type": "Substance",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Substance"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "expiry",
+              "type": "date",
+              "documentation": "When no longer valid to use"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Identifier of the package/container"
+            },
+            {
+              "name": "quantity",
+              "type": "number",
+              "documentation": "Amount of substance in the package"
+            },
+            {
+              "name": "substance",
+              "type": "reference",
+              "documentation": "A component of the substance"
+            },
+            {
+              "name": "type",
+              "type": "token",
+              "documentation": "The type of the substance"
+            }
+          ]
+        },
+        {
+          "type": "Supply",
+          "profile": {
+            "reference": "http://try-fhirplace.hospital-systems.com/Profile/Supply"
+          },
+          "operation": [
+            {
+              "code": "read"
+            },
+            {
+              "code": "vread"
+            },
+            {
+              "code": "update"
+            },
+            {
+              "code": "history-instance"
+            },
+            {
+              "code": "create"
+            },
+            {
+              "code": "history-type"
+            }
+          ],
+          "readHistory": true,
+          "updateCreate": true,
+          "searchParam": [
+            {
+              "name": "_id",
+              "type": "token",
+              "documentation": "The logical resource id associated with the resource (must be supported by all servers)"
+            },
+            {
+              "name": "dispenseid",
+              "type": "token",
+              "documentation": "External identifier"
+            },
+            {
+              "name": "dispensestatus",
+              "type": "token",
+              "documentation": "in progress | dispensed | abandoned"
+            },
+            {
+              "name": "identifier",
+              "type": "token",
+              "documentation": "Unique identifier"
+            },
+            {
+              "name": "kind",
+              "type": "token",
+              "documentation": "The kind of supply (central, non-stock, etc)"
+            },
+            {
+              "name": "patient",
+              "type": "reference",
+              "documentation": "Patient for whom the item is supplied"
+            },
+            {
+              "name": "status",
+              "type": "token",
+              "documentation": "requested | dispensed | received | failed | cancelled"
+            },
+            {
+              "name": "supplier",
+              "type": "reference",
+              "documentation": "Dispenser"
+            }
+          ]
+        }
+      ],
+      "operation": [
+        {
+          "code": "transaction"
+        },
+        {
+          "code": "history-system"
+        }
+      ]
+    }
+  ]
+}
