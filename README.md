@@ -6,4 +6,6 @@ node-fhir
 
 Inspired by the OSEHRA [vista-novo-generated-fhir](https://github.com/OSEHRA/vista-novo-generated-fhir) project.
 
+For the latest builds of examples, please visit [here](http://hl7-fhir.github.io/)
+
 Relies heavily on a fork of jspears [mers](https://github.com/jspears/mers) Mongoose/REST module.
