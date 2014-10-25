@@ -26,13 +26,28 @@ var express = require('express'),
   bodyParser = require('body-parser'), 
   errorHandler = require('errorhandler'),
   morgan = require('morgan'),
-  rest = require('mers')
+  rest = require('mers'),
+  url = require('url'),
   schemaHelper = require('./lib/schema-helper'),
   port = 4000;
 
 schemaHelper.readSchemas(__dirname + '/schemas');
 
 var app = express();
+
+app.use(function(req, res, next){
+  var u = url.parse(req.url);
+
+  if (u.pathname.search(/metadata|profile/)){
+    res.contentType('json');
+  }
+
+  if (u.pathname.search(/\_search$/) != -1){
+    //Need to change this to:
+    //http://localhost:4000/fhir/adversereaction?filter=3...
+  }
+  next();
+});
 
 app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
