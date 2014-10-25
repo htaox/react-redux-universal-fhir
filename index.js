@@ -35,11 +35,16 @@ schemaHelper.readSchemas(__dirname + '/schemas');
 
 var app = express();
 
+/**
+ * Possibly, the most important:
+ * http://www.hl7.org/implement/standards/fhir/search.html
+ */
 app.use(function(req, res, next){
   var u = url.parse(req.url);
 
-  if (u.pathname.search(/metadata|profile/)){
-    res.contentType('json');
+  if (u.pathname.search(/metadata|profile/i) != -1){
+    //res.contentType('json');
+    res.setHeader('content-type', 'application/json+fhir');
   }
 
   if (u.pathname.search(/\_search$/) != -1){

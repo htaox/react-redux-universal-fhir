@@ -34911,7 +34911,7 @@ angular.module('ui.codemirror', []).constant('uiCodemirrorConfig', {}).directive
       this.searchChains = collectChains(profile);
       this.chainType = collectChainType(profile);
       this.searchIncludes = profile.structure[0].differential.element.filter(function(x) {
-        return (x.definition.type && x.definition.type[0] && x.definition.type[0].code) === 'ResourceReference';
+        return (x.definition.type && x.definition.type[0] && x.definition.type[0].code) === 'Reference';
       });
       this.profile = profile;
     }
