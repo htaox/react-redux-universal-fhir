@@ -1,68 +1,218 @@
-var mongoose = require('mongoose');
+//object-path
+var fs = require('fs');
+var _ = require('underscore');
+var objectPath = require("object-path");
+var url = require('url');
+var path = require('path');
+var types = {};
+var baseDest = 'schemas/base';
+var typesDest = 'schemas/types';
+var resourcesDest = 'schemas/resources';
+var valuesetsDest = 'schemas/valuesets';
 
-function onConnectedCallback () {
-  console.info('Mongoose connected successfully');
+function setup() {
+
+  var folders = ['schemas', baseDest, typesDest, resourcesDest, valuesetsDest];
+  for(var i in folders) {
+    if (!fs.existsSync(folders[i])){
+      fs.mkdirSync(folders[i]);
+    }
+  }
 }
 
-if (mongoose.connection.readyState != 1) {
-  var mongoServer = '127.0.0.1';
-  var collection = 'fhir';
+function recurse(json) {
+
+  for (var x in json){
   
-  var options = {
-    db: { native_parser: true },
-    server: { poolSize: 5, socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }
+    if (Object.prototype.toString.call(json[x]) == '[object Array]'){
+      for(var y in json[x]){
+        
+        if (typeof json[x][y] === 'object'){
+          recurse(json[x][y]);
+        }
+      }
+    }
+
+    if (typeof json[x] === 'object'){
+      recurse(json[x]);
+    }
+    
+    if (x == 'type'){
+      var type = types[json[x]];
+      if (type){
+        //json[x] = type;
+        for(var k in types[type]) {
+          json[k] = types[type][k];
+        }
+      } 
+    }
+
   }
-  mongoose.connect('mongodb://'+mongoServer+'/'+collection, options)
-  var db = mongoose.connection;
-  db.on('error', console.error.bind(console, 'mongodb connection error for '+mongoServer+'/'+collection));
-  db.once('open', onConnectedCallback);
+
+  if (typeof obj == 'object'){
+    recurse(obj);
+  }
 }
-else {
-  console.info('Mongoose already connected');
-  onConnectedCallback();
+
+function processTypes(dir) {
+
+  var files = fs.readdirSync(dir);
+
+  for(var i in files) {
+    if (files[i].search(/^type/i) != -1 && files[i].search(/restful/i) == -1) {
+      var done = processSchema(dir + '/' + files[i]);
+      types[done.model] = done.schema; 
+    }
+  }
+
+  //For recursive references
+  for (var i in types) {
+    recurse(types[i]);
+  }
+
+  //fs.writeFileSync(dest + '/types.json', JSON.stringify(types, null, '  '));
 }
 
-var express = require('express'),
-  bodyParser = require('body-parser'), 
-  errorHandler = require('errorhandler'),
-  morgan = require('morgan'),
-  rest = require('mers'),
-  url = require('url'),
-  schemaHelper = require('./lib/schema-helper'),
-  port = 4000;
+function updateObjectPath(obj, path, value) {
 
-schemaHelper.readSchemas(__dirname + '/schemas');
+  if (path.search(/extension|contained|text/i)==-1) {
+    objectPath.set(obj, path, value);
+  }
+}
 
-var app = express();
-
-/**
- * Possibly, the most important:
- * http://www.hl7.org/implement/standards/fhir/search.html
- */
-app.use(function(req, res, next){
-  var u = url.parse(req.url);
-
-  if (u.pathname.search(/metadata|profile/i) != -1){
-    //res.contentType('json');
-    res.setHeader('content-type', 'application/json+fhir');
+function processValueset(file) {
+  var raw = fs.readFileSync(file, {encoding:'utf8'});
+  var json = JSON.parse(raw);
+  if (!json.define){
+    console.log('Skipping => '+file);
+    return;
   }
 
-  if (u.pathname.search(/\_search$/) != -1){
-    //Need to change this to:
-    //http://localhost:4000/fhir/adversereaction?filter=3...
+  console.log('Processing => '+file);
+  var model = json['name'];
+  var obj = {};
+  obj.title = json.description;
+  obj.concept = json['define']['concept'];
+  for(var i in obj.concept) {
+    obj.concept[i].type = 'String';    
   }
-  next();
-});
+  //
+  fs.writeFileSync(valuesetsDest + '/' + path.basename(file, '.json') + '.json', JSON.stringify(obj, null, '  '));
+  
+}
 
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-app.use('/fhir', rest({ mongoose: mongoose}).rest())
-app.use(errorHandler({ dumpExceptions: true, showStack: true }));
-app.use(morgan('combined'));
-app.listen(port);
-console.info("Express server listening on port %d in %s mode, visit http://localhost:%d/fhir/", port, app.settings.env, port);
+function processSchema(file) {
+  var raw = fs.readFileSync(file, {encoding:'utf8'});
+  var json = JSON.parse(raw);
+  if (!json.structure){
+    console.log('Skipping => '+file);
+    return;
+  }
+  console.log('Processing => '+file);
+  var structure = json.structure[0];
+  var element = structure.element;
+  var searchParam = structure.searchParam;
 
-//http://localhost:4000/rest/adversereaction 
-//etc
-//expected result
-// {"title":"Search results for resource type AdverseReaction","id":"http://localhost:3000/adversereaction","totalResults":0,"link":{"href":"http://localhost:3000/adversereaction","rel":"self"},"updated":"2014-10-23T18:04:56.623Z","entry":[]}
+  var model = element[0].path;
+  
+  var obj = {};
+
+  for(var i in element) {
+    //console.log(element[i].definition.type);
+    //min == max 1 == 1?
+    
+    var el = element[i];
+    
+    if (i > 0 && el.definition && el.definition.type && el.definition.type.length > 0) {
+
+      var val = { 
+          title: { type: 'String', required: false, default: el.definition.short },
+          description: { type: 'String', required: false, default: el.definition.formal },
+          required: el.definition.min == 1 
+        };
+
+      if (el.definition.type[0].code == 'ResourceReference'){
+        
+        for(var i in el.definition.type) {
+          //Need to clone it
+          val = JSON.parse(JSON.stringify(val));
+
+          var type = url.parse(el.definition.type[i].profile).pathname.split('/').pop();
+          val.ref = type;
+          val.type = 'String';
+
+          updateObjectPath(obj, el.path + (i > 0 ? i : ''), el.definition.max == '*' ? [val] : val);
+        }
+      }
+      else {
+        var type = el.definition.type[0].code;
+
+        //val[types[type] ? 'token' : 'type'] = types[type] ? types[type] : type;
+        
+        //val.type = type;
+
+        if (types[type]){
+          //token types like Identifier
+          //val.type = 'String';
+          //_.extend(val, types[type]);
+          //val.type = types[type];
+          for(var k in types[type]) {
+            console.log(k)
+            val[k] = types[type][k];
+          }
+          //delete required attribute
+          delete val['required'];
+        }
+        else {
+          val.type = type
+        }
+        
+        updateObjectPath(obj, el.path, el.definition.max == '*' ? [val] : val);
+      }      
+    }
+    else {
+      updateObjectPath(obj, el.path, {});
+    }
+    
+  }
+
+  obj = obj[model];
+
+  //Extension types defined by organization
+  if (model != 'Extension'){
+    
+    var dest = resourcesDest;
+    if (path.basename(file).search(/^type/i) != -1) {
+      dest = typesDest;
+    }
+    if (path.basename(file).search(/^type-(period)/i) != -1){
+      dest = baseDest;
+    }
+
+    fs.writeFileSync(dest + '/' + model + '.json', JSON.stringify(obj, null, '  '));
+  }
+
+  return { model: model, schema: obj };
+
+}
+
+function processAllSchemas(folder) {
+
+  var files = fs.readdirSync(folder);
+
+  for(var i in files) {
+    if (files[i].search(/profile\.json$/i) != -1){
+      processSchema(folder + '/' + files[i]);
+    }
+    if (files[i].search(/^valueset/i) != -1){
+      processValueset(folder + '/' + files[i]);
+    }
+  } 
+
+}
+
+setup();
+processTypes('fhir-schema');
+console.log(types);
+processAllSchemas('fhir-schema');
+//processSchema('./fhir-schema/adversereaction.profile.json');

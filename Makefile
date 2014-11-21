@@ -21,4 +21,4 @@ test-md:
 		--ui bdd \
 		test/*.js
 
-.PHONY: test test-html setup
+.PHONY: test test-html setup download
