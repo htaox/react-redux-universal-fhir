@@ -5,7 +5,7 @@ mkdir -p fhir-schema && cd fhir-schema && rm -rf ./*
 wget http://www.hl7.org/documentcenter/public/standards/FHIR/examples-json.zip
 unzip examples-json.zip
 
-export DEST=public/profile
+export DEST=../public/profile
 #ls | egrep '\.profile\.json | wc -l'
 cp -a ./*.profile.json $DEST
 #echo 'Some reason rename was not working for me'
