@@ -7,3 +7,17 @@ node-fhir
 Inspired by the OSEHRA [vista-novo-generated-fhir](https://github.com/OSEHRA/vista-novo-generated-fhir) project.
 
 For the latest builds of examples, please visit [here](http://hl7-fhir.github.io/)
+
+##Getting started :smile
+```bash
+# Download latest FHIR json schemas
+npm download
+
+# Convert FHIR schemas to mongoose schemas
+# Works, yay!
+npm pre-start
+
+# Start the server (under development)
+npm start
+
+```

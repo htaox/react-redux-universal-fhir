@@ -16,7 +16,9 @@
   "devDependencies": {},
   "scripts": {
     "test": "make test",
-    "start": "node server.js"
+    "pre-start": "node index.js",
+    "start": "node server.js",
+    "download": "bin/download-fhir-examples.sh"
   },
   "repository": {
     "type": "git",

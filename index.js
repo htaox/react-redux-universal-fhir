@@ -5,6 +5,7 @@ var objectPath = require("object-path");
 var url = require('url');
 var path = require('path');
 var types = {};
+var tmpDest = 'schemas/tmp';
 var baseDest = 'schemas/base';
 var typesDest = 'schemas/types';
 var resourcesDest = 'schemas/resources';
@@ -12,7 +13,7 @@ var valuesetsDest = 'schemas/valuesets';
 
 function setup() {
 
-  var folders = ['schemas', baseDest, typesDest, resourcesDest, valuesetsDest];
+  var folders = ['schemas', tmpDest, baseDest, typesDest, resourcesDest, valuesetsDest];
   for(var i in folders) {
     if (!fs.existsSync(folders[i])){
       fs.mkdirSync(folders[i]);
@@ -54,6 +55,17 @@ function recurse(json) {
   }
 }
 
+function processBase(dir){
+  var files = fs.readdirSync(dir);
+
+  for(var i in files) {
+    if (files[i].search(/^type/i) != -1 && files[i].search(/(period)/i) != -1) {
+      var done = processSchema(dir + '/' + files[i]);
+      types[done.model] = done.schema;
+    }
+  }  
+}
+
 function processTypes(dir) {
 
   var files = fs.readdirSync(dir);
@@ -70,7 +82,7 @@ function processTypes(dir) {
     recurse(types[i]);
   }
 
-  //fs.writeFileSync(dest + '/types.json', JSON.stringify(types, null, '  '));
+  fs.writeFileSync(tmpDest + '/types.json', JSON.stringify(types, null, '  '));
 }
 
 function updateObjectPath(obj, path, value) {
@@ -91,7 +103,7 @@ function processValueset(file) {
   console.log('Processing => '+file);
   var model = json['name'];
   var obj = {};
-  obj.title = json.description;
+  obj.title = { type: "String", default: json.description };
   obj.concept = json['define']['concept'];
   for(var i in obj.concept) {
     obj.concept[i].type = 'String';    
@@ -102,6 +114,14 @@ function processValueset(file) {
 }
 
 function processSchema(file) {
+
+  /*
+    Place loadTypes() here and not processAllSchemas so we can do unit test
+  */
+  if (Object.keys(types) == 0){
+    loadTypes();
+  }
+
   var raw = fs.readFileSync(file, {encoding:'utf8'});
   var json = JSON.parse(raw);
   if (!json.structure){
@@ -123,14 +143,23 @@ function processSchema(file) {
     
     var el = element[i];
     
-    if (i > 0 && el.definition && el.definition.type && el.definition.type.length > 0) {
+    //We need to handle property collection (note:lowercase "c" b/c mongoose keyword for creating schema)
+    //Capitalizing it fixes problem
+    el.path = el.path.replace(/collection/g,'Collection');
 
+    if (i > 0 && el.definition && el.definition.type && el.definition.type.length > 0) {
+      
       var val = { 
           title: { type: 'String', required: false, default: el.definition.short },
           description: { type: 'String', required: false, default: el.definition.formal },
           required: el.definition.min == 1 
         };
-
+      
+      /**
+        If you don't want title and description, comment out above and use below simple val def.
+      **/
+      //var val = {};
+      
       if (el.definition.type[0].code == 'ResourceReference'){
         
         for(var i in el.definition.type) {
@@ -157,7 +186,6 @@ function processSchema(file) {
           //_.extend(val, types[type]);
           //val.type = types[type];
           for(var k in types[type]) {
-            console.log(k)
             val[k] = types[type][k];
           }
           //delete required attribute
@@ -196,6 +224,22 @@ function processSchema(file) {
 
 }
 
+function loadBase(folder){
+  var files = fs.readdirSync(folder);
+
+  for(var i in files) {
+    var raw = fs.readFileSync(folder + '/' + files[i], {encoding:'utf8'});
+    var json = JSON.parse(raw);
+    types[path.basename(files[i],'json')] = json;
+  } 
+}
+
+function loadTypes() {
+  var raw = fs.readFileSync('schemas/tmp/types.json', {encoding:'utf8'});
+  var json = JSON.parse(raw);
+  types = json;
+}
+
 function processAllSchemas(folder) {
 
   var files = fs.readdirSync(folder);
@@ -204,15 +248,25 @@ function processAllSchemas(folder) {
     if (files[i].search(/profile\.json$/i) != -1){
       processSchema(folder + '/' + files[i]);
     }
+    
     if (files[i].search(/^valueset/i) != -1){
       processValueset(folder + '/' + files[i]);
     }
+    
   } 
 
 }
 
+function flatTest() {
+
+  var flatten = require('flat');
+  var specimen = fs.readFileSync('schemas/resources/Specimen.json',{encoding:'utf8'});
+  console.log(flatten(JSON.parse(specimen)), {safe:true});
+}
+
 setup();
+processBase('fhir-schema');
+loadBase(baseDest);
 processTypes('fhir-schema');
-console.log(types);
 processAllSchemas('fhir-schema');
-//processSchema('./fhir-schema/adversereaction.profile.json');
+//processSchema('./fhir-schema/specimen.profile.json');
