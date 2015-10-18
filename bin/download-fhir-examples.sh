@@ -2,7 +2,7 @@
 mkdir -p fhir-schema && cd fhir-schema && rm -rf ./*
 # mkdir -p examples-json && cd examples-json
 # wget http://hl7-fhir.github.io/examples-json.zip
-wget http://www.hl7.org/documentcenter/public/standards/FHIR/examples-json.zip
+wget https://www.hl7.org/fhir/examples-json.zip
 unzip examples-json.zip
 
 export DEST=../public/profile
