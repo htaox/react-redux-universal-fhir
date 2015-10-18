@@ -1,0 +1,42 @@
+{
+  "name": "node-fhir",
+  "version": "0.0.0",
+  "description": "A node.js/MongoDB FHIR REST Server",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "object-path": "~0.6.0",
+    "express": "~4.10.2",
+    "body-parser": "~1.9.2",
+    "mongoose": "~3.8.19",
+    "underscore": "~1.7.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "make test",
+    "pre-start": "node index.js",
+    "start": "node server.js",
+    "download": "bin/download-fhir-examples.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/htaox/node-fhir.git"
+  },
+  "keywords": [
+    "FHIR",
+    "REST",
+    "nodejs",
+    "MongoDB",
+    "mongoose",
+    "HealthcareIT",
+    "HL7"
+  ],
+  "author": "Henry Tao",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/htaox/node-fhir/issues"
+  },
+  "homepage": "https://github.com/htaox/node-fhir"
+}
