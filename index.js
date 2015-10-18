@@ -88,7 +88,13 @@ function processTypes(dir) {
 function updateObjectPath(obj, path, value) {
 
   if (path.search(/extension|contained|text/i) == -1) {
-    objectPath.set(obj, path, value);
+    //console.log(value)
+    try{
+      objectPath.set(obj, path, value);
+    }
+    catch(e){
+      throw new Error(path);
+    }
   }
 }
 
@@ -131,16 +137,19 @@ function processSchema(file) {
     encoding: 'utf8'
   });
   var json = JSON.parse(raw);
-  if (!json.structure) {
+  //if (!json.structure) {
+  if (!json.snapshot) {
     console.log('Skipping => ' + file);
     return;
   }
   console.log('Processing => ' + file);
-  var structure = json.structure[0];
-  var element = structure.element;
-  var searchParam = structure.searchParam;
+  //var structure = json.structure[0];
+  //var element = structure.element;
+  var element = json.snapshot.element;
+  //var searchParam = structure.searchParam;
 
-  var model = element[0].path;
+  //var model = element[0].path;
+  var model = json.id;
 
   var obj = {};
 
@@ -149,25 +158,36 @@ function processSchema(file) {
     //min == max 1 == 1?
 
     var el = element[i];
-
+    if (!el.path){
+      throw new Error(el);
+    }
     //We need to handle property collection (note:lowercase "c" b/c mongoose keyword for creating schema)
     //Capitalizing it fixes problem
     el.path = el.path.replace(/collection/g, 'Collection');
 
-    if (i > 0 && el.definition && el.definition.type && el.definition.type.length > 0) {
+    //replace "[x]" VisionPrescription.reason[x] to VisionPrescription.reason
+    el.path = el.path.replace(/\[x\]/g,'');
+
+    //replace .length with .size
+    el.path = el.path.replace(/\.length/g,'.size');
+
+    //if (i > 0 && el.definition && el.definition.type && el.definition.type.length > 0) {
+    if (el.definition) {
 
       var val = {
-        title: {
+        label: {
           type: 'String',
           required: false,
-          default: el.definition.short
+          default: el.short
+          //default: el.definition.short
         },
         description: {
           type: 'String',
           required: false,
-          default: el.definition.formal
+          default: el.definition
+          //default: el.definition.formal
         },
-        required: el.definition.min == 1
+        required: el.min == 1 //el.definition.min == 1
       };
 
       /**
@@ -175,23 +195,27 @@ function processSchema(file) {
       **/
       //var val = {};
 
-      if (el.definition.type[0].code == 'ResourceReference') {
+      //if (el.definition.type[0].code == 'ResourceReference') {
+      if (el.type && el.type[0].code == 'ResourceReference') {
 
         for (var i in el.definition.type) {
-          //Need to clone it
-          val = JSON.parse(JSON.stringify(val));
+            //Need to clone it
+            val = JSON.parse(JSON.stringify(val));
 
-          var type = url.parse(el.definition.type[i].profile).pathname.split('/').pop();
-          val.ref = type;
-          val.type = 'String';
+            var type = url.parse(el.definition.type[i].profile).pathname.split('/').pop();
+            val.ref = type;
+            val.type = 'String';
 
-          updateObjectPath(obj, el.path + (i > 0 ? i : ''), el.definition.max == '*' ? [val] : val);
-        }
-      } else {
-        var type = el.definition.type[0].code;
+            //updateObjectPath(obj, el.path + (i > 0 ? i : ''), el.definition.max == '*' ? [val] : val);
+            updateObjectPath(obj, el.path + (i > 0 ? i : ''), el.max == '*' ? [val] : val);
+          }
+      }
+      else if (el.type){
+         
+        //var type = el.definition.type[0].code;
+        var type = el.type[0].code;
 
         //val[types[type] ? 'token' : 'type'] = types[type] ? types[type] : type;
-
         //val.type = type;
 
         if (types[type]) {
@@ -204,17 +228,24 @@ function processSchema(file) {
           }
           //delete required attribute
           delete val['required'];
-        } else {
-          val.type = type
         }
-
-        updateObjectPath(obj, el.path, el.definition.max == '*' ? [val] : val);
+        else {
+          val.type = type;
+        }
+      } 
+      else {
+        val.type = 'String';
       }
-    } else {
+
+      //updateObjectPath(obj, el.path, el.definition.max == '*' ? [val] : val);
+      updateObjectPath(obj, el.path, el.max == '*' ? [val] : val);
+      //console.log(el.path)
+    }
+    else {
       updateObjectPath(obj, el.path, {});
     }
 
-  }
+  } //le fin for each
 
   obj = obj[model];
 
