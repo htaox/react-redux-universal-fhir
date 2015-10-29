@@ -25,7 +25,7 @@ function recurse(json) {
 
   for (var x in json) {
 
-    if (Object.prototype.toString.call(json[x]) == '[object Array]') {
+    if (Object.prototype.tostring.call(json[x]) == '[object Array]') {
       for (var y in json[x]) {
 
         if (typeof json[x][y] === 'object') {
@@ -87,15 +87,14 @@ function processTypes(dir) {
 
 function updateObjectPath(obj, path, value) {
 
-  if (path.search(/extension|contained|text/i) == -1) {
-    //console.log(value)
+  //if (path.search(/extension|contained|text/i) == -1) {
     try{
       objectPath.set(obj, path, value);
     }
     catch(e){
       throw new Error(path);
     }
-  }
+  //}
 }
 
 function processValueset(file) {
@@ -112,12 +111,12 @@ function processValueset(file) {
   var model = json['name'];
   var obj = {};
   obj.title = {
-    type: "String",
+    type: "string",
     default: json.description
   };
   obj.concept = json['define']['concept'];
   for (var i in obj.concept) {
-    obj.concept[i].type = 'String';
+    obj.concept[i].type = 'string';
   }
   //
   fs.writeFileSync(valuesetsDest + '/' + path.basename(file, '.json') + '.json', JSON.stringify(obj, null, '  '));
@@ -174,18 +173,19 @@ function processSchema(file) {
     //if (i > 0 && el.definition && el.definition.type && el.definition.type.length > 0) {
     if (el.definition) {
 
-      var val = {
-        label: {
-          type: 'String',
-          required: false,
-          default: el.short
-          //default: el.definition.short
-        },
-        description: {
-          type: 'String',
-          required: false,
-          default: el.definition
-          //default: el.definition.formal
+      var val = { templateOptions: {
+          label: {
+            type: 'string',
+            required: false,
+            default: el.short
+            //default: el.definition.short
+          },
+          description: {
+            type: 'string',
+            required: false,
+            default: el.definition
+            //default: el.definition.formal
+          }
         },
         required: el.min == 1 //el.definition.min == 1
       };
@@ -196,19 +196,32 @@ function processSchema(file) {
       //var val = {};
 
       //if (el.definition.type[0].code == 'ResourceReference') {
-      if (el.type && el.type[0].code == 'ResourceReference') {
+      if (el.type && el.type[0].code == 'Reference') {
 
-        for (var i in el.definition.type) {
+        if (el.type.length > 1) {
+
+          val.refs = [];
+          for (var i in el.type) {
             //Need to clone it
             val = JSON.parse(JSON.stringify(val));
 
-            var type = url.parse(el.definition.type[i].profile).pathname.split('/').pop();
-            val.ref = type;
-            val.type = 'String';
+            var type = url.parse(el.type[i].profile[0]).pathname.split('/').pop();
+            val.refs.push(type);
 
-            //updateObjectPath(obj, el.path + (i > 0 ? i : ''), el.definition.max == '*' ? [val] : val);
-            updateObjectPath(obj, el.path + (i > 0 ? i : ''), el.max == '*' ? [val] : val);
           }
+
+          val.type = "mixed";
+
+        }
+        else {
+          if (el.type[0].profile){
+            val.ref = url.parse(el.type[0].profile[0]).pathname.split('/').pop();
+          }
+          val.type = 'string';
+        }
+
+        //updateObjectPath(obj, el.path + (i > 0 ? i : ''), el.definition.max == '*' ? [val] : val);
+        //updateObjectPath(obj, el.path + (i > 0 ? i : ''), el.max == '*' ? [val] : val);
       }
       else if (el.type){
          
@@ -220,7 +233,7 @@ function processSchema(file) {
 
         if (types[type]) {
           //token types like Identifier
-          //val.type = 'String';
+          //val.type = 'string';
           //_.extend(val, types[type]);
           //val.type = types[type];
           for (var k in types[type]) {
@@ -234,11 +247,11 @@ function processSchema(file) {
         }
       } 
       else {
-        val.type = 'String';
+        val.type = 'string';
       }
 
       //updateObjectPath(obj, el.path, el.definition.max == '*' ? [val] : val);
-      updateObjectPath(obj, el.path, el.max == '*' ? [val] : val);
+      updateObjectPath(obj, el.path, el.max == '*' && i > 0 ? [val] : val);
       //console.log(el.path)
     }
     else {
@@ -248,7 +261,10 @@ function processSchema(file) {
   } //le fin for each
 
   obj = obj[model];
-
+  
+  //sort the object
+  var sobj = _(obj).keys().sort().reduce(function(m,k){ m[k] = obj[k]; return m; }, {});
+  
   //Extension types defined by organization
   if (model != 'Extension') {
 
@@ -260,12 +276,12 @@ function processSchema(file) {
       dest = baseDest;
     }
 
-    fs.writeFileSync(dest + '/' + model + '.json', JSON.stringify(obj, null, '  '));
+    fs.writeFileSync(dest + '/' + model + '.json', JSON.stringify(sobj, null, '  '));
   }
 
   return {
     model: model,
-    schema: obj
+    schema: sobj
   };
 
 }
