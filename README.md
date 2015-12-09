@@ -8,6 +8,8 @@ Inspired by the OSEHRA [vista-novo-generated-fhir](https://github.com/OSEHRA/vis
 
 For the latest builds of examples, please visit [here](http://hl7-fhir.github.io/)
 
+Thanks to @jsdmc react-redux boilerplate.  The project can be found [here](https://github.com/jsdmc/react-redux-router-crud-boilerplate.git)
+
 ##Getting started :smile
 ```bash
 # Download latest FHIR json schemas
