@@ -1,6 +1,6 @@
 // BASE SETUP
 // =============================================================================
-var _ = require('underscore');
+var _ = require('lodash');
 
 // call the packages we need
 var express = require('express');
