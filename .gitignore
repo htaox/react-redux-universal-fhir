@@ -13,3 +13,10 @@ fhir-schema/
 schemas/
 public/profile/
 schemas-dtsu2/
+.DS_Store
+
+node_modules
+
+npm-debug.log
+
+dist
