@@ -83,7 +83,7 @@
     "HL7"
   ],
   "author": "Henry Tao",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "bugs": {
     "url": "https://github.com/htaox/node-fhir/issues"
   },
