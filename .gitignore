@@ -16,5 +16,9 @@ schemas-dtsu2/
 .DS_Store
 node_modules
 npm-debug.log
-dist
 dependencies
+dist/
+*.iml
+webpack-assets.json
+webpack-stats.json
+api.old/

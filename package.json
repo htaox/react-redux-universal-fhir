@@ -1,8 +1,8 @@
 {
-  "name": "node-fhir",
-  "version": "0.0.1",
-  "description": "A node.js/MongoDB FHIR REST Server",
-  "main": "server.js",
+  "name": "react-redux-universal-fhir",
+  "version": "0.0.2",
+  "description": "A React/Redux/Universal/MongoDB FHIR REST Server",
+  "main": "bin/server.js",
   "directories": {
     "test": "test"
   },
@@ -71,7 +71,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/htaox/node-fhir.git"
+    "url": "https://github.com/htaox/react-redux-universal-fhir.git"
   },
   "keywords": [
     "FHIR",
@@ -85,7 +85,7 @@
   "author": "Henry Tao",
   "license": "BSD-3-Clause",
   "bugs": {
-    "url": "https://github.com/htaox/node-fhir/issues"
+    "url": "https://github.com/htaox/react-redux-universal-fhir/issues"
   },
-  "homepage": "https://github.com/htaox/node-fhir"
+  "homepage": "https://github.com/htaox/react-redux-universal-fhir"
 }
