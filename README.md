@@ -17,7 +17,7 @@ Heavily based on @erikas react-redux-universal-hot-example.  The project can be 
 * Mongoose schema for FHIR resources
 * Written in ES6/7
 
-##Getting started :smile
+##Getting started :smile:
 ```bash
 # Download latest FHIR json schemas
 npm download
