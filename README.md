@@ -8,7 +8,7 @@ Inspired by the OSEHRA [vista-novo-generated-fhir](https://github.com/OSEHRA/vis
 
 For the latest builds of examples, please visit [here](http://hl7-fhir.github.io/)
 
-Thanks to @erikas react-redux-universal-hot-example.  The project can be found [here](https://github.com/erikras/react-redux-universal-hot-example)
+Heavily based on @erikas react-redux-universal-hot-example.  The project can be found [here](https://github.com/erikras/react-redux-universal-hot-example)
 
 ###Warning: Not Production Ready!
 
