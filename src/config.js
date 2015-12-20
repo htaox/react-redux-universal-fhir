@@ -20,7 +20,7 @@ module.exports = Object.assign({
     meta: {
       charSet: 'utf-8',
       property: {
-        
+        foo: 'bar'
       }
     }
   }

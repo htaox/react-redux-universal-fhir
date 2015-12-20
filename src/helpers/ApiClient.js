@@ -1,5 +1,3 @@
-'use strict';
-
 import superagent from 'superagent';
 import config from '../config';
 
