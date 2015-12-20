@@ -28,7 +28,7 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 
-
+/*
 app.use((req, res) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 
@@ -55,10 +55,13 @@ app.use((req, res) => {
   }
 });
 
+*/
 
+/*
 const bufferSize = 100;
 const messageBuffer = new Array(bufferSize);
 let messageIndex = 0;
+*/
 
 if (config.apiPort) {
   const runnable = app.listen(config.apiPort, (err) => {
