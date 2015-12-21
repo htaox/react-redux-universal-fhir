@@ -15,7 +15,7 @@ export default class About extends Component {
     const {showKitten} = this.state;
     const kitten = require('./kitten.jpg');
     return (
-      <div className="container">
+      <div className="">
         <h1>About Us</h1>
         <DocumentMeta title={config.app.title + ': About Us'}/>
 

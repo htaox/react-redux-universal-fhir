@@ -6,6 +6,7 @@ import auth from './auth';
 import counter from './counter';
 import {reducer as form} from 'redux-form';
 import info from './info';
+import conformance from './conformance';
 
 export default combineReducers({
   router: routerStateReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
     counter2: counter,
     counter3: counter
   }),
-  info
+  info,
+  conformance
 });

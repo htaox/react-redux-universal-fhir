@@ -7,7 +7,8 @@ import {
     About,
     Login,
     LoginSuccess,
-    NotFound
+    NotFound,
+    Conformance
   } from 'containers';
 
 export default (store) => {
@@ -44,6 +45,7 @@ export default (store) => {
       { /* Routes */ }
       <Route path="about" component={About}/>
       <Route path="login" component={Login}/>
+      <Route path="conformance" component={Conformance}/>
     { /* Catch all route */ }
       <Route path="*" component={NotFound} status={404} />
     </Route>

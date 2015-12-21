@@ -8,3 +8,4 @@
 // export CounterButton from './CounterButton/CounterButton';
 export InfoBar from './InfoBar/InfoBar';
 export MiniInfoBar from './MiniInfoBar/MiniInfoBar';
+export ConformanceMeta from './ConformanceMeta/ConformanceMeta';

@@ -64,6 +64,7 @@ export default class App extends Component {
               <span>{config.app.title}</span>
             </IndexLink>
           </li>
+          <li key={3}><Link to="/conformance">Conformance</Link></li>
           <li key={4}><Link to="/about">About Us</Link></li>
           <li key={5}><Link to="/login">Login</Link></li>
           <li key={6} className="logout-link" onClick={this.handleLogout}><Link to="/logout">Logout</Link></li>
