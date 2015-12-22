@@ -72,6 +72,8 @@
     "body-parser": "^1.14.1",
     "classnames": "^2.1.5",
     "compression": "^1.6.0",
+    "csv-parse": "^1.0.1",
+    "event-stream": "^3.3.2",
     "express": "~4.10.2",
     "express-session": "^1.11.3",
     "history": "^1.12.5",

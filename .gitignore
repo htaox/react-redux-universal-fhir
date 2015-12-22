@@ -22,3 +22,4 @@ dist/
 webpack-assets.json
 webpack-stats.json
 api.old/
+snomed-ct/
