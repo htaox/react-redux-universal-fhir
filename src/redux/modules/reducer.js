@@ -7,6 +7,7 @@ import counter from './counter';
 import {reducer as form} from 'redux-form';
 import info from './info';
 import conformance from './conformance';
+import jsonInspector from './json-inspector';
 
 export default combineReducers({
   router: routerStateReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
     counter3: counter
   }),
   info,
-  conformance
+  conformance,
+  jsonInspector
 });
