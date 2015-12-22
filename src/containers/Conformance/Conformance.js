@@ -39,7 +39,7 @@ export default class Conformance extends Component {
       <h1>Conformance</h1>
         <DocumentMeta title={config.app.title + ': Conformance'}/>
         <JsonInspector />
-        <div>{conformance ? JSON.stringify(conformance, null, '  ') : 'No conformance'}</div>
+        {/* <div>{conformance ? JSON.stringify(conformance, null, '  ') : 'No conformance'}</div>*/}
       </div>
     );
   }

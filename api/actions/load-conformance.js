@@ -5,275 +5,646 @@ export default function loadConformance() {
   return new Promise((resolve) => {
 
     resolve({
-      "resourceType": "Conformance",
-      "id": "example",
-      "text": {
-        "status": "generated",
-        "div": "<div>\n      \n      <p>The EHR Server supports the following transactions for the resource Person: read, vread, \n        update, history, search(name,gender), create and updates.</p>\n      \n      <p>The EHR System supports the following message: admin-notify::Person.</p>\n      \n      <p>The EHR Application has a \n        <a href=\"http://fhir.hl7.org/base/Profilebc054d23-75e1-4dc6-aca5-838b6b1ac81d/_history/b5fdd9fc-b021-4ea1-911a-721a60663796\">general document profile</a>.\n      </p>\n    \n    </div>"
-      },
-      "url": "68D043B5-9ECF-4559-A57A-396E0D452311",
-      "_url": {
-        "fhir_comments": [
-          "    the identifier for this conformance statement. \n    The identifier and version establish identifiers that other specifications etc.may use to \n    refer to the conformance statement that this resource represents in a logical manner \n    rather than in a literal (URL) fashion \n\n    The identifier should be globally unique - a UUID, an OID, or a URL/URI\n     "
-        ]
-      },
-      "version": "20130510",
-      "name": "ACME EHR Conformance statement",
-      "status": "draft",
-      "experimental": true,
-      "publisher": "ACME Corporation",
-      "contact": [
+    "resourceType":"Conformance",
+    "publisher":"Not provided",
+    "date":"2015-12-22T08:22:25-05:00",
+    "kind":"instance",
+    "software":{
+        "name":"HAPI FHIR Server",
+        "version":"1.4-SNAPSHOT"
+    },
+    "implementation":{
+        "description":"UHN Test Server (DSTU 2 Resources)"
+    },
+    "fhirVersion":"1.0.2",
+    "acceptUnknown":"extensions",
+    "format":[
+        "application/xml+fhir",
+        "application/json+fhir"
+    ],
+    "rest":[
         {
-          "name": "System Administrator",
-          "telecom": [
-            {
-              "system": "email",
-              "value": "wile@acme.org"
-            }
-          ]
-        }
-      ],
-      "date": "2012-01-04",
-      "description": "This is the FHIR conformance statement for the main EHR at ACME for the private interface - it does not describe the public interface",
-      "requirements": "Main EHR conformance statement, published for contracting and operational support",
-      "copyright": "Copyright © Acme Healthcare and GoodCorp EHR Systems",
-      "kind": "instance",
-      "software": {
-        "name": "EHR",
-        "version": "0.00.020.2134",
-        "releaseDate": "2012-01-04"
-      },
-      "implementation": {
-        "description": "main EHR at ACME",
-        "url": "http://10.2.3.4/fhir"
-      },
-      "fhirVersion": "1.0.0",
-      "_fhirVersion": {
-        "fhir_comments": [
-          "   while the FHIR infrastructure is turning over prior to development, a version is \n    required. Note that this may be rescinded later?   "
-        ]
-      },
-      "acceptUnknown": "both",
-      "_acceptUnknown": {
-        "fhir_comments": [
-          "   this system accepts unknown content in the resources   "
-        ]
-      },
-      "format": [
-        "xml",
-        "json"
-      ],
-      "rest": [
-        {
-          "fhir_comments": [
-            "   in a real conformance statement, it's unlikely that a single conformance statement \n    would declare conformance for REST, messaging and documents, though it is legal. \n    This example does so in order to show all the parts of a conformance statement   "
-          ],
-          "mode": "server",
-          "_mode": {
-            "fhir_comments": [
-              "   this is a server conformance statement. Note that servers are required to provide \n      one of these. It can easily be edited by hand - copy this, replace the metadata above, \n      delete the messaging and document stuff below, and then replace the details appropriately.   "
+            "mode":"server",
+            "resource":[
+                {
+                    "extension":[
+                        {
+                            "url":"http://hl7api.sourceforge.net/hapi-fhir/res/extdefs.html#resourceCount",
+                            "valueDecimal":512
+                        }
+                    ],
+                    "type":"AllergyIntolerance",
+                    "profile":{
+                        "reference":"http://hl7.org/fhir/profiles/AllergyIntolerance"
+                    },
+                    "interaction":[
+                        {
+                            "code":"read"
+                        },
+                        {
+                            "code":"vread"
+                        },
+                        {
+                            "code":"update"
+                        },
+                        {
+                            "code":"delete"
+                        },
+                        {
+                            "code":"history-instance"
+                        },
+                        {
+                            "code":"history-type"
+                        },
+                        {
+                            "code":"create"
+                        },
+                        {
+                            "code":"search-type"
+                        }
+                    ],
+                    "conditionalCreate":true,
+                    "conditionalUpdate":true,
+                    "conditionalDelete":"multiple",
+                    "searchInclude":[
+                        "*",
+                        "AllergyIntolerance:patient",
+                        "AllergyIntolerance:recorder",
+                        "AllergyIntolerance:reporter"
+                    ],
+                    "searchParam":[
+                        {
+                            "name":"_content",
+                            "type":"string",
+                            "documentation":"Search the contents of the resource's data using a fulltext search"
+                        },
+                        {
+                            "name":"_id",
+                            "type":"string",
+                            "documentation":"The resource identity"
+                        },
+                        {
+                            "name":"_language",
+                            "type":"string",
+                            "documentation":"The resource language"
+                        },
+                        {
+                            "name":"_lastUpdated",
+                            "type":"date",
+                            "documentation":"Only return resources which were last updated as specified by the given range"
+                        },
+                        {
+                            "name":"_profile",
+                            "type":"uri",
+                            "documentation":"Search for resources which have the given profile"
+                        },
+                        {
+                            "name":"_security",
+                            "type":"token",
+                            "documentation":"Search for resources which have the given security labels"
+                        },
+                        {
+                            "name":"_tag",
+                            "type":"token",
+                            "documentation":"Search for resources which have the given tag"
+                        },
+                        {
+                            "name":"_text",
+                            "type":"string",
+                            "documentation":"Search the contents of the resource's narrative using a fulltext search"
+                        },
+                        {
+                            "name":"category",
+                            "type":"token"
+                        },
+                        {
+                            "name":"criticality",
+                            "type":"token"
+                        },
+                        {
+                            "name":"date",
+                            "type":"date"
+                        },
+                        {
+                            "name":"identifier",
+                            "type":"token"
+                        },
+                        {
+                            "name":"last-date",
+                            "type":"date"
+                        },
+                        {
+                            "name":"manifestation",
+                            "type":"token"
+                        },
+                        {
+                            "name":"onset",
+                            "type":"date"
+                        },
+                        {
+                            "name":"patient",
+                            "type":"reference",
+                            "target":[
+                                "Patient"
+                            ],
+                            "chain":[
+                                "_id",
+                                "_language",
+                                "active",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "animal-breed",
+                                "animal-species",
+                                "birthdate",
+                                "careprovider",
+                                "deathdate",
+                                "deceased",
+                                "email",
+                                "family",
+                                "gender",
+                                "given",
+                                "identifier",
+                                "language",
+                                "link",
+                                "name",
+                                "organization",
+                                "phone",
+                                "phonetic",
+                                "telecom"
+                            ]
+                        },
+                        {
+                            "name":"recorder",
+                            "type":"reference",
+                            "target":[
+                                "Practitioner",
+                                "Patient"
+                            ],
+                            "chain":[
+                                "_id",
+                                "_language",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "communication",
+                                "email",
+                                "family",
+                                "gender",
+                                "given",
+                                "identifier",
+                                "location",
+                                "name",
+                                "organization",
+                                "phone",
+                                "phonetic",
+                                "role",
+                                "specialty",
+                                "telecom",
+                                "_id",
+                                "_language",
+                                "active",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "animal-breed",
+                                "animal-species",
+                                "birthdate",
+                                "careprovider",
+                                "deathdate",
+                                "deceased",
+                                "email",
+                                "family",
+                                "gender",
+                                "given",
+                                "identifier",
+                                "language",
+                                "link",
+                                "name",
+                                "organization",
+                                "phone",
+                                "phonetic",
+                                "telecom"
+                            ]
+                        },
+                        {
+                            "name":"reporter",
+                            "type":"reference",
+                            "target":[
+                                "Patient",
+                                "RelatedPerson",
+                                "Practitioner"
+                            ],
+                            "chain":[
+                                "_id",
+                                "_language",
+                                "active",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "animal-breed",
+                                "animal-species",
+                                "birthdate",
+                                "careprovider",
+                                "deathdate",
+                                "deceased",
+                                "email",
+                                "family",
+                                "gender",
+                                "given",
+                                "identifier",
+                                "language",
+                                "link",
+                                "name",
+                                "organization",
+                                "phone",
+                                "phonetic",
+                                "telecom",
+                                "_id",
+                                "_language",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "birthdate",
+                                "email",
+                                "gender",
+                                "identifier",
+                                "name",
+                                "patient",
+                                "phone",
+                                "phonetic",
+                                "telecom",
+                                "_id",
+                                "_language",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "communication",
+                                "email",
+                                "family",
+                                "gender",
+                                "given",
+                                "identifier",
+                                "location",
+                                "name",
+                                "organization",
+                                "phone",
+                                "phonetic",
+                                "role",
+                                "specialty",
+                                "telecom"
+                            ]
+                        },
+                        {
+                            "name":"route",
+                            "type":"token"
+                        },
+                        {
+                            "name":"severity",
+                            "type":"token"
+                        },
+                        {
+                            "name":"status",
+                            "type":"token"
+                        },
+                        {
+                            "name":"substance",
+                            "type":"token"
+                        },
+                        {
+                            "name":"type",
+                            "type":"token"
+                        }
+                    ]
+                },                
+                {
+                    "extension":[
+                        {
+                            "url":"http://hl7api.sourceforge.net/hapi-fhir/res/extdefs.html#resourceCount",
+                            "valueDecimal":6786
+                        }
+                    ],
+                    "type":"Patient",
+                    "profile":{
+                        "reference":"http://hl7.org/fhir/profiles/Patient"
+                    },
+                    "interaction":[
+                        {
+                            "code":"read"
+                        },
+                        {
+                            "code":"vread"
+                        },
+                        {
+                            "code":"update"
+                        },
+                        {
+                            "code":"delete"
+                        },
+                        {
+                            "code":"history-instance"
+                        },
+                        {
+                            "code":"history-type"
+                        },
+                        {
+                            "code":"create"
+                        },
+                        {
+                            "code":"search-type"
+                        }
+                    ],
+                    "conditionalCreate":true,
+                    "conditionalUpdate":true,
+                    "conditionalDelete":"multiple",
+                    "searchInclude":[
+                        "*",
+                        "Patient:careprovider",
+                        "Patient:link",
+                        "Patient:organization"
+                    ],
+                    "searchParam":[
+                        {
+                            "name":"_content",
+                            "type":"string",
+                            "documentation":"Search the contents of the resource's data using a fulltext search"
+                        },
+                        {
+                            "name":"_id",
+                            "type":"string",
+                            "documentation":"The resource identity"
+                        },
+                        {
+                            "name":"_language",
+                            "type":"string",
+                            "documentation":"The resource language"
+                        },
+                        {
+                            "name":"_lastUpdated",
+                            "type":"date",
+                            "documentation":"Only return resources which were last updated as specified by the given range"
+                        },
+                        {
+                            "name":"_profile",
+                            "type":"uri",
+                            "documentation":"Search for resources which have the given profile"
+                        },
+                        {
+                            "name":"_security",
+                            "type":"token",
+                            "documentation":"Search for resources which have the given security labels"
+                        },
+                        {
+                            "name":"_tag",
+                            "type":"token",
+                            "documentation":"Search for resources which have the given tag"
+                        },
+                        {
+                            "name":"_text",
+                            "type":"string",
+                            "documentation":"Search the contents of the resource's narrative using a fulltext search"
+                        },
+                        {
+                            "name":"active",
+                            "type":"token",
+                            "documentation":"Whether the patient record is active"
+                        },
+                        {
+                            "name":"address",
+                            "type":"string",
+                            "documentation":"An address in any kind of address/part of the patient"
+                        },
+                        {
+                            "name":"address-city",
+                            "type":"string",
+                            "documentation":"A city specified in an address"
+                        },
+                        {
+                            "name":"address-country",
+                            "type":"string",
+                            "documentation":"A country specified in an address"
+                        },
+                        {
+                            "name":"address-postalcode",
+                            "type":"string",
+                            "documentation":"A postalCode specified in an address"
+                        },
+                        {
+                            "name":"address-state",
+                            "type":"string",
+                            "documentation":"A state specified in an address"
+                        },
+                        {
+                            "name":"address-use",
+                            "type":"token",
+                            "documentation":"A use code specified in an address"
+                        },
+                        {
+                            "name":"animal-breed",
+                            "type":"token",
+                            "documentation":"The breed for animal patients"
+                        },
+                        {
+                            "name":"animal-species",
+                            "type":"token",
+                            "documentation":"The species for animal patients"
+                        },
+                        {
+                            "name":"birthdate",
+                            "type":"date",
+                            "documentation":"The patient's date of birth"
+                        },
+                        {
+                            "name":"careprovider",
+                            "type":"reference",
+                            "documentation":"Patient's nominated care provider, could be a care manager, not the organization that manages the record",
+                            "target":[
+                                "Organization",
+                                "Practitioner"
+                            ],
+                            "chain":[
+                                "_id",
+                                "_language",
+                                "active",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "identifier",
+                                "name",
+                                "partof",
+                                "phonetic",
+                                "type",
+                                "_id",
+                                "_language",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "communication",
+                                "email",
+                                "family",
+                                "gender",
+                                "given",
+                                "identifier",
+                                "location",
+                                "name",
+                                "organization",
+                                "phone",
+                                "phonetic",
+                                "role",
+                                "specialty",
+                                "telecom"
+                            ]
+                        },
+                        {
+                            "name":"deathdate",
+                            "type":"date",
+                            "documentation":"The date of death has been provided and satisfies this search value"
+                        },
+                        {
+                            "name":"deceased",
+                            "type":"token",
+                            "documentation":"This patient has been marked as deceased, or as a death date entered"
+                        },
+                        {
+                            "name":"email",
+                            "type":"token",
+                            "documentation":"A value in an email contact"
+                        },
+                        {
+                            "name":"family",
+                            "type":"string",
+                            "documentation":"A portion of the family name of the patient"
+                        },
+                        {
+                            "name":"gender",
+                            "type":"token",
+                            "documentation":"Gender of the patient"
+                        },
+                        {
+                            "name":"given",
+                            "type":"string",
+                            "documentation":"A portion of the given name of the patient"
+                        },
+                        {
+                            "name":"identifier",
+                            "type":"token",
+                            "documentation":"A patient identifier"
+                        },
+                        {
+                            "name":"language",
+                            "type":"token",
+                            "documentation":"Language code (irrespective of use value)"
+                        },
+                        {
+                            "name":"link",
+                            "type":"reference",
+                            "documentation":"All patients linked to the given patient",
+                            "target":[
+                                "Patient"
+                            ],
+                            "chain":[
+                                "_id",
+                                "_language",
+                                "active",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "animal-breed",
+                                "animal-species",
+                                "birthdate",
+                                "careprovider",
+                                "deathdate",
+                                "deceased",
+                                "email",
+                                "family",
+                                "gender",
+                                "given",
+                                "identifier",
+                                "language",
+                                "link",
+                                "name",
+                                "organization",
+                                "phone",
+                                "phonetic",
+                                "telecom"
+                            ]
+                        },
+                        {
+                            "name":"name",
+                            "type":"string",
+                            "documentation":"A portion of either family or given name of the patient"
+                        },
+                        {
+                            "name":"organization",
+                            "type":"reference",
+                            "documentation":"The organization at which this person is a patient",
+                            "target":[
+                                "Organization"
+                            ],
+                            "chain":[
+                                "_id",
+                                "_language",
+                                "active",
+                                "address",
+                                "address-city",
+                                "address-country",
+                                "address-postalcode",
+                                "address-state",
+                                "address-use",
+                                "identifier",
+                                "name",
+                                "partof",
+                                "phonetic",
+                                "type"
+                            ]
+                        },
+                        {
+                            "name":"phone",
+                            "type":"token",
+                            "documentation":"A value in a phone contact"
+                        },
+                        {
+                            "name":"phonetic",
+                            "type":"string",
+                            "documentation":"A portion of either family or given name using some kind of phonetic matching algorithm"
+                        },
+                        {
+                            "name":"telecom",
+                            "type":"token",
+                            "documentation":"The value in any kind of telecom details of the patient"
+                        }
+                    ]
+                }
             ]
-          },
-          "documentation": "Main FHIR endpoint for acem health",
-          "security": {
-            "cors": true,
-            "_cors": {
-              "fhir_comments": [
-                "  cors support is highly recommended - mandatory if using SMART on FHIR "
-              ]
-            },
-            "service": [
-              {
-                "coding": [
-                  {
-                    "system": "http://hl7.org/fhir/restful-security-service",
-                    "code": "OAuth"
-                  }
-                ]
-              }
-            ],
-            "description": "Oauth (unspecified version see oauth.net).",
-            "certificate": [
-              {
-                "type": "application/jwt",
-                "blob": "IHRoaXMgYmxvYiBpcyBub3QgdmFsaWQ=",
-                "_blob": {
-                  "fhir_comments": [
-                    "  base JWT. this blob is not valid  "
-                  ]
-                }
-              }
-            ]
-          },
-          "resource": [
-            {
-              "fhir_comments": [
-                "   zero or more of these - declaration of support for a resource   "
-              ],
-              "type": "Patient",
-              "profile": {
-                "fhir_comments": [
-                  "   let's assume that HL7 has stood up a profile registry at http://fhir.hl7.org/fhir \n        - it's likely to have a registry, though this is not decided, nor is a URL decided. \n        This application simply uses a profile registered directly with HL7. For the simplest \n        case of a FHIR REST Server, just delete this profile reference. Profile references do \n        not need to be a UUID, though a profile registry could insist that they are   "
-                ],
-                "reference": "http://fhir.hl7.org/base/Profile7896271d-57f6-4231-89dc-dcc91eab2416"
-              },
-              "interaction": [
-                {
-                  "code": "read"
-                },
-                {
-                  "code": "vread",
-                  "documentation": "Only supported for patient records since 12-Dec 2012"
-                },
-                {
-                  "code": "update"
-                },
-                {
-                  "code": "history-instance"
-                },
-                {
-                  "code": "create"
-                },
-                {
-                  "code": "history-type"
-                }
-              ],
-              "versioning": "versioned-update",
-              "readHistory": true,
-              "updateCreate": false,
-              "_updateCreate": {
-                "fhir_comments": [
-                  "  this server doesn't let the clients create identities  "
-                ]
-              },
-              "conditionalCreate": true,
-              "_conditionalCreate": {
-                "fhir_comments": [
-                  "  it's good to support conditional create on patients; this solves a common middleware problem  "
-                ]
-              },
-              "conditionalUpdate": false,
-              "conditionalDelete": "not-supported",
-              "_conditionalDelete": {
-                "fhir_comments": [
-                  "  0..1 If allows/uses conditional update  "
-                ]
-              },
-              "searchInclude": [
-                "Organization"
-              ],
-              "searchRevInclude": [
-                "Person"
-              ],
-              "searchParam": [
-                {
-                  "name": "identifier",
-                  "definition": "http://hl7.org/fhir/SearchParameter/Patient-identifier",
-                  "type": "token",
-                  "documentation": "Only supports search by institution MRN",
-                  "modifier": [
-                    "missing"
-                  ]
-                },
-                {
-                  "name": "careprovider",
-                  "definition": "http://hl7.org/fhir/SearchParameter/Patient-careprovider",
-                  "type": "reference",
-                  "target": [
-                    "Organization"
-                  ],
-                  "modifier": [
-                    "missing"
-                  ],
-                  "chain": [
-                    "name",
-                    "identifier"
-                  ]
-                }
-              ]
-            }
-          ],
-          //https://www.hl7.org/fhir/valueset-allergyintolerance-substance-code.html
-          "interaction": [
-            {
-              "code": "allergyintolerance-substance-code"
-            },
-            {
-              "code": "transaction"
-            },
-            {
-              "code": "history-system"
-            }
-          ],
-          "compartment": [
-            "http://hl7.org/fhir/compartment/Patient"
-          ]
         }
-      ],
-      "messaging": [
-        {
-          "fhir_comments": [
-            "   a messaging conformance statement. Applications are not required to make a conformance \n    statement with regard to messaging, though there is active argument that they should.    "
-          ],
-          "endpoint": [
-            {
-              "protocol": {
-                "system": "http://hl7.org/fhir/message-transport",
-                "code": "mllp"
-              },
-              "address": "mllp:10.1.1.10:9234",
-              "_address": {
-                "fhir_comments": [
-                  "  LLP server at 10.1.1.10 on port 9234  "
-                ]
-              }
-            }
-          ],
-          "reliableCache": 30,
-          "documentation": "ADT A08 equivalent for external system notifications",
-          "event": [
-            {
-              "code": {
-                "system": "http://hl7.org/fhir/message-type",
-                "code": "admin-notify"
-              },
-              "category": "Consequence",
-              "mode": "receiver",
-              "_mode": {
-                "fhir_comments": [
-                  "   this a receiver - i.e. answers. Not neccessariy a server (though this is)   "
-                ]
-              },
-              "focus": "Patient",
-              "request": {
-                "fhir_comments": [
-                  "   specify a profile for the request person. Very often there's no \n        point profiling the response, it's not interesting   "
-                ],
-                "reference": "StructureDefinition/daf-patient"
-              },
-              "response": {
-                "reference": "StructureDefinition/MessageHeader"
-              },
-              "documentation": "Notification of an update to a patient resource. changing the links is not supported"
-            }
-          ]
-        }
-      ],
-      "document": [
-        {
-          "fhir_comments": [
-            "   a document conformance statement   "
-          ],
-          "mode": "consumer",
-          "documentation": "Basic rules for all documents in the EHR system",
-          "profile": {
-            "fhir_comments": [
-              "   this is the important element: a reference to a published document profile \n       note that this is a version specific reference.  "
-            ],
-            "reference": "http://fhir.hl7.org/base/Profilebc054d23-75e1-4dc6-aca5-838b6b1ac81d/_history/b5fdd9fc-b021-4ea1-911a-721a60663796"
-          }
-        }
-      ]
-    });
+    ]
+});
   });
 }
