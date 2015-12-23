@@ -29,46 +29,52 @@ import _ from 'lodash';
 import fs from 'fs';
 // var eco = require('eco');
 import async from 'async';
-import ResponseFormatHelper from `${__dirname}/../../lib/response_format_helper`;
+import ResponseFormatHelper from '../../../lib/response_format_helper'; // `${__dirname}/../../lib/response_format_helper`;
 
 const Patient = mongoose.model('Patient');
 const ResourceHistory = mongoose.model('ResourceHistory');
 
-export function load (req, res, id, vid, next) {
-  if (req.resourceHistory) {
-    if(vid !== null){
-      req.resourceHistory.getVersion(vid, (err, patient) => {
-        req.patient = patient;
-        next(patient);
-      });
-    } else {
-      req.resourceHistory.findLatest((err, patient) => {
-        req.patient = patient;
-        next(patient);
-      });
-    }
-  } else {
-    ResourceHistory.findOne(id, (rhErr, resourceHistory) => {
-      if (rhErr) {
-        next(rhErr);
-      }
-      if(resourceHistory !== null) {
-        req.resourceHistory = resourceHistory;
-        req.resourceHistory.findLatest(function(err, patient) {
+export function load (req, params) {
+
+  return new Promise((resolve, reject) => {
+
+    const [id, vid] = params;
+
+    // console.log('id => %s vid => %s', id, vid);
+  
+    if (req.resourceHistory) {
+      if(vid !== null){
+        req.resourceHistory.getVersion(vid, (err, patient) => {
           req.patient = patient;
-          next(patient);
+          resolve(patient);
+        });
+      } else {
+        req.resourceHistory.findLatest((err, patient) => {
+          req.patient = patient;
+          resolve(patient);
         });
       }
-    });
-  }
-}
+    } else {
+      ResourceHistory.findOne(id, (rhErr, resourceHistory) => {
+        console.log(rhErr, resourceHistory)
+        if (rhErr) {
+          reject(rhErr);
+        }
+        if(resourceHistory !== null) {
+          req.resourceHistory = resourceHistory;
+          req.resourceHistory.findLatest(function(err, patient) {
+            req.patient = patient;
+            resolve(patient);
+          });
+        }
+        else {
+          reject({message: 'Not Found'});
+        }
+      });
+    }  
 
-//export function show (req, res) {
-export function (req) {
-  const patient = req.patient;
-  const json = JSON.stringify(patient);
-  // res.send(json);
-  return json;
+  });
+
 }
 
 export function create (req, res) {
@@ -124,44 +130,49 @@ export function destroy (req, res) {
 
 // export function list (req, res) {
 export function list (req) {
-  let content = {
-    title: "Search results for resource type Patient",
-    id: "http://localhost:3000/patient",
-    totalResults: 0,
-    link: {
-      href: "http://localhost:3000/patient",
-      rel: "self"
-    },
-    updated: new Date(Date.now()),
-    entry: []
-  };
+  
+  return new Promise((resolve, reject) => {
 
-  ResourceHistory.find({resourceType:"Patient"}, (rhErr, histories) => {
-    if (rhErr) {
-      return next(rhErr);
-    }
-    let counter = 0;
-    async.forEach(histories, (history, callback) => {
-      counter++;
-      content.totalResults = counter;
-      history.findLatest((err, patient) => {
-        let entrywrapper = {
-          title: "Patient " + history.vistaId + " Version " + history.versionCount(),
-          id: "http://localhost:3000/patient/@" + history.vistaId,
-          link: {
-            href: "http://localhost:3000/patient/@" + history.vistaId + "/history/@" + history.versionCount(),
-            rel: "self"
-          },
-          updated: history.lastUpdatedAt(),
-          published: new Date(Date.now()),
-          content: patient
-        };
-        content.entry.push(entrywrapper);
-        callback();
+    let content = {
+      title: "Search results for resource type Patient",
+      id: "http://localhost:3000/patient",
+      totalResults: 0,
+      link: {
+        href: "http://localhost:3000/patient",
+        rel: "self"
+      },
+      updated: new Date(Date.now()),
+      entry: []
+    };
+
+    ResourceHistory.find({resourceType:"Patient"}, (rhErr, histories) => {
+      if (rhErr) {
+        return next(rhErr);
+      }
+      let counter = 0;
+      async.forEach(histories, (history, callback) => {
+        counter++;
+        content.totalResults = counter;
+        history.findLatest((err, patient) => {
+          let entrywrapper = {
+            title: "Patient " + history.vistaId + " Version " + history.versionCount(),
+            id: "http://localhost:3000/patient/@" + history.vistaId,
+            link: {
+              href: "http://localhost:3000/patient/@" + history.vistaId + "/history/@" + history.versionCount(),
+              rel: "self"
+            },
+            updated: history.lastUpdatedAt(),
+            published: new Date(Date.now()),
+            content: patient
+          };
+          content.entry.push(entrywrapper);
+          callback();
+        });
+      }, (err) => {
+          // res.send(JSON.stringify(content));
+          resolve(content);
       });
-    }, (err) => {
-        // res.send(JSON.stringify(content));
-        return content;
     });
+
   });
 }

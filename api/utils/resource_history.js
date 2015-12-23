@@ -96,3 +96,5 @@ ResourceHistorySchema.statics = {
 
 // Just need to import this module at startup 
 mongoose.model('ResourceHistory', ResourceHistorySchema);
+
+export default ResourceHistorySchema;

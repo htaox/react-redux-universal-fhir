@@ -1,0 +1,1 @@
+export const dbUri = 'mongodb://localhost/fhir';
