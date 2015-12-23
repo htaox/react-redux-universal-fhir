@@ -28,12 +28,12 @@ app.use(session({
 }));
 app.use(bodyParser.json());
 
-app.use((req, res) => {
+app.use((req, res, next) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
 
   const {action, params} = mapUrl(actions, splittedUrlPath);
 
-  if (action) {
+  if (action) {    
     action(req, params)
       .then((result) => {
         if (result instanceof Function) {
