@@ -63,10 +63,12 @@ export function load (req, res, id, vid, next) {
   }
 }
 
-export function show (req, res) {
+//export function show (req, res) {
+export function (req) {
   const patient = req.patient;
   const json = JSON.stringify(patient);
-  res.send(json);
+  // res.send(json);
+  return json;
 }
 
 export function create (req, res) {
@@ -120,8 +122,8 @@ export function destroy (req, res) {
   });
 }
 
-export function list (req, res) {
-
+// export function list (req, res) {
+export function list (req) {
   let content = {
     title: "Search results for resource type Patient",
     id: "http://localhost:3000/patient",
@@ -158,7 +160,8 @@ export function list (req, res) {
         callback();
       });
     }, (err) => {
-        res.send(JSON.stringify(content));
+        // res.send(JSON.stringify(content));
+        return content;
     });
   });
 }

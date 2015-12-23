@@ -9,6 +9,7 @@ import {mapUrl} from './utils/url';
 import PrettyError from 'pretty-error';
 import http from 'http';
 // import SocketIo from 'socket.io';
+import schemaHelper from './utils/load-schemas';
 
 const pretty = new PrettyError();
 const app = express();
