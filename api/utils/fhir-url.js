@@ -1,8 +1,12 @@
 'use strict';
 
-export function fhirUrl(availableActions = {}, url = []) {
-  let avail = Object.keys(availableActions).filter((d) => d.search(/^fhir/));
-  if (avail.indexOf(url[0]) != -1){
+import mongoose from 'mongoose';
+
+export function fhirUrl(url = []) {
+  
+  let uc = url[0][0].toUpperCase() + url[0].slice(1);
+
+  if (mongoose.modelNames().indexOf(uc) != -1){
     if (url.length == 1){
       url.push('list');
     }

@@ -1,1 +1,1 @@
-export const dbUri = 'mongodb://localhost/fhir';
+export const DB_URI = 'mongodb://localhost/fhir';

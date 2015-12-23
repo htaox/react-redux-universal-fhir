@@ -1,11 +1,11 @@
-import { dbUri } from './constants';
+import { DB_URI } from './constants';
 import mongoose from 'mongoose';
-mongoose.connect(dbUri);
+mongoose.connect(DB_URI);
 
 // CONNECTION EVENTS
 // When successfully connected
 mongoose.connection.on('connected', function () {  
-  console.log('Mongoose default connection open to ' + dbUri);
+  console.log('Mongoose default connection open to ' + DB_URI);
 }); 
 
 // If the connection throws an error

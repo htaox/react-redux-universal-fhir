@@ -11,7 +11,7 @@ import bodyParser from 'body-parser';
 import config from '../src/config';
 import * as actions from './actions/index';
 import {mapUrl} from './utils/url';
-//import {fhirUrl} from './utils/fhir-url';
+import {fhirUrl} from './utils/fhir-url';
 import PrettyError from 'pretty-error';
 import http from 'http';
 // import SocketIo from 'socket.io';
@@ -25,27 +25,6 @@ const server = new http.Server(app);
 const io = new SocketIo(server);
 io.path('/ws');
 */
-import _ from 'lodash';
-function fhirUrl(availableActions = {}, url = []) {
-  
-  let avail = _(Object.keys(availableActions))
-    .filter(d => d.search(/^fhir/) != -1)
-    .map(d => d.replace(/^fhir\$/, ''))
-    .value();
-
-  let newUrl = url.slice();
-
-  if (avail.indexOf(url[0]) != -1){
-    newUrl[0] = 'fhir$' + newUrl[0]; 
-    if (url.length == 1){
-      newUrl.push('list');
-    }
-    else {
-      newUrl.splice(1, 0, 'load');
-    }
-  }
-  return newUrl;
-}
 
 app.use(session({
   secret: 'superdupersecret',
@@ -57,9 +36,9 @@ app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   const splittedUrlPath = req.url.split('?')[0].split('/').slice(1);
-  //console.log(actions, splittedUrlPath)
-  let url = fhirUrl(actions, splittedUrlPath);
-  //console.log(x)
+  
+  const url = fhirUrl(splittedUrlPath);
+  
   const {action, params} = mapUrl(actions, url);
 
   if (action) {    
