@@ -1,4 +1,5 @@
-import superagent from 'superagent';
+// import superagent from 'superagent';
+import axios from 'axios';
 import config from '../config';
 
 const methods = ['get', 'post', 'put', 'patch', 'del'];
@@ -22,6 +23,32 @@ function formatUrl(path) {
 class _ApiClient {
   constructor(req) {
     methods.forEach((method) =>
+      
+      this[method] = (path, { params, data } = {}) => {
+        let config = {
+          url: formatUrl(path),
+          timeout: 20000,
+          method: method,
+          responseType: 'json'
+        };
+
+        if (params) {
+          config.params = params;
+        }
+
+        if (__SERVER__ && req.get('cookie')) {
+          config.headers = { cookie: req.get('cookie') };
+        }
+
+        if (data) {
+          config.data = data;
+        }
+
+        return axios.create(config);
+
+      };     
+
+      /*
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
 
@@ -38,7 +65,10 @@ class _ApiClient {
         }
 
         request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
+        */
+     
       }));
+      
   }
 }
 

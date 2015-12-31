@@ -1,6 +1,6 @@
 {
   "name": "react-redux-universal-fhir",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A React/Redux/Universal/MongoDB FHIR REST Server",
   "main": "bin/server.js",
   "directories": {
