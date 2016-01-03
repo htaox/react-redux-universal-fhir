@@ -22,7 +22,7 @@ function formatUrl(path) {
  */
 class _ApiClient {
   constructor(req) {
-    methods.forEach((method) =>
+    methods.forEach((method) => {
       
       this[method] = (path, { params, data } = {}) => {
         let config = {
@@ -67,7 +67,7 @@ class _ApiClient {
         request.end((err, { body } = {}) => err ? reject(body || err) : resolve(body));
         */
      
-      }));
+      });
       
   }
 }
