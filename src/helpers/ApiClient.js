@@ -23,9 +23,9 @@ function formatUrl(path) {
 class _ApiClient {
   constructor(req) {
     methods.forEach((method) => {
-      
+
       this[method] = (path, { params, data } = {}) => {
-        let config = {
+        const httpConfig = {
           url: formatUrl(path),
           timeout: 20000,
           method: method,
@@ -33,23 +33,22 @@ class _ApiClient {
         };
 
         if (params) {
-          config.params = params;
+          httpConfig.params = params;
         }
 
         if (__SERVER__ && req.get('cookie')) {
-          config.headers = { cookie: req.get('cookie') };
+          httpConfig.headers = { cookie: req.get('cookie') };
         }
 
         if (data) {
-          config.data = data;
+          httpConfig.data = data;
         }
 
-        return axios(config);
+        return axios(httpConfig);
 
-      };     
+      };
 
     });
-      
   }
 }
 
